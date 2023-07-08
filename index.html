@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="css/custome.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="https://www.python.org/static/community_logos/python-logo-generic.svg" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					<h3>¡Bienvenidos a Aprende Python 3 en 11 días!</h3>
+					<p>
+						<small>Creado por <a href="?transition=concave#/transitions">Héctor Martínez.</a></small>
+					</p>
+				</section>
+
+				<section data-transition-speed="convex">
+					<section data-auto-animate data-auto-animate-unmatched="slide-in fade-out">
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Comprender la sintaxis de Python</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							pip install freedom
+						</code></pre>
+					</section>
+					<section data-auto-animate data-auto-animate-unmatched="slide-in fade-out">
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Desarrollar programas básicos y avanzados</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							import os
+
+							dir=os.getcwd()
+							print(dir)
+						</code></pre>
+					</section>
+					<section data-auto-animate data-auto-animate-unmatched="slide-in fade-out">
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Emplear estructuras de control de flujo</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							import os
+
+							directorio = "ruta/del/directorio"							
+							for ruta_actual, directorios, archivos in os.walk(directorio):
+								print("Directorio:", ruta_actual)
+								print("Directorios:", directorios)
+								print("Archivos:", archivos)
+								print()							
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>Slice 3</section>
+					<section>Slice 3.1</section>
+					<section>Slice 3.3</section>
+				</section>
+				<section>Slide 4</section>
+				<section>Slide 5</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
