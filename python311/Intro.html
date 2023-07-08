@@ -28,8 +28,7 @@
 				<section data-transition-speed="convex">
 					<section data-auto-animate>
 						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">Desarrollar programas avanzados con Python</p>
-						<p>Comprender la sintáxis de Python</p>
+						<p>Instalar correctamente un entorno de Python</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
 						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
 							pip install freedom!
@@ -37,61 +36,80 @@
 					</section>
 					<section data-auto-animate>
 						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">Emplear estructuras de control de flujo</p>
-						<p>Desarrollar programas avanzados con Python</p>
+						<p>Comprender la sintáxis de Python</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
-						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
-							import os
-
-							dir=os.getcwd()
-							print(dir)
-						</code></pre>
-					</section>
-					<section data-auto-animate>
-						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">crear funciones y módulos reutilizables</p>
-						<p>Emplear estructuras de control de flujo</p>
-						<img src="examples/assets/image1.png" style="height: 100px;">
-						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
-							import os
-
-							directorios = "ruta/del/directorio"
-
-							for ruta_actual, directorios, archivos in os.walk(directorio):
-								print("Directorio:", ruta_actual)
-								print("Directorios:", directorios)
-								print("Archivos:", archivos)
-								print()							
-						</code></pre>
-					</section>
-					<section data-auto-animate>
-						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">manejar archivos y excepciones</p>
-						<p>crear funciones y módulos reutilizables</p>
-						<img src="examples/assets/image1.png" style="height: 100px;">
-						<pre data-id="code-animation"><code data-line-numbers class="hljs javascript" data-trim data-line-numbers="|1"><script type="text/template">
-							import os
-
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="7"><script type="text/template">
+							print('Hellow, World!')
 						</script></code></pre>
 					</section>
 					<section data-auto-animate>
 						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">Programación Orientada a Objetos en Python</p>
-						<p>manejar archivos y excepciones</p>
+						<p>Desarrollar programas avanzados con Python</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
-						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
-							import os
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers=""><script type="text/template">
+							import sys
+
+							def process_arguments(args):
+							   	print(f"Number of arguments: {len(args)}")
+							   	print("Arguments:")
+							   	for i, arg in enumerate(args):
+								   	print(f"Argument {i + 1}: {arg}")
+							   	if "--help" in args:
+									print("Help message: This script does something.")
 							
-						</code></pre>
+							if __name__ == "__main__":
+							   	process_arguments(sys.argv[1:])
+						</script></code></pre>
 					</section>
 					<section data-auto-animate>
 						<h3>¿Qué aprenderás en este curso?</h3>
-						<p style="opacity: 0.2;">manejar archivos y excepciones</p>
+						<p>Emplear estructuras de control de flujo</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="9-11"><script type="text/template">
+							# Monitorear cambios en el archivo de origen
+							while True:
+								# Verificar si el archivo de origen ha sido modificado
+								if os.path.getmtime(self.source_file) > os.path.getmtime(self.destination_file):
+									# Copiar el archivo de origen al archivo de destino para actualizarlo
+									shutil.copy2(self.source_file, self.destination_file)
+									print("Archivo de destino actualizado.")
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Crear funciones y módulos reutilizables</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="1"><script type="text/template">
+							def start_monitoring(self):
+								# Verificar si el archivo de origen existe
+								if not os.path.exists(self.source_file):
+									print("El archivo de origen no existe.")
+									return
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Manejar archivos y excepciones</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="3-5"><script type="text/template">
+							# Copiar el archivo de origen al archivo de destino inicialmente
+							shutil.copy2(self.source_file, self.destination_file)
+							print("Archivo de destino creado.")
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
 						<p>Programación Orientada a Objetos en Python</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
 						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
 							import os
+							import shutil
 							
+							class FileMonitor:
+								def __init__(self, source_file, destination_file):
+									self.source_file = source_file
+									self.destination_file = destination_file					
+								...
 						</code></pre>
 					</section>
 				</section>
