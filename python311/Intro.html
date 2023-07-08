@@ -66,11 +66,8 @@
 						<p>Emplear estructuras de control de flujo</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
 						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="9-11"><script type="text/template">
-							# Monitorear cambios en el archivo de origen
 							while True:
-								# Verificar si el archivo de origen ha sido modificado
 								if os.path.getmtime(self.source_file) > os.path.getmtime(self.destination_file):
-									# Copiar el archivo de origen al archivo de destino para actualizarlo
 									shutil.copy2(self.source_file, self.destination_file)
 									print("Archivo de destino actualizado.")
 						</script></code></pre>
@@ -81,7 +78,6 @@
 						<img src="examples/assets/image1.png" style="height: 100px;">
 						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="1"><script type="text/template">
 							def start_monitoring(self):
-								# Verificar si el archivo de origen existe
 								if not os.path.exists(self.source_file):
 									print("El archivo de origen no existe.")
 									return
@@ -91,10 +87,12 @@
 						<h3>¿Qué aprenderás en este curso?</h3>
 						<p>Manejar archivos y excepciones</p>
 						<img src="examples/assets/image1.png" style="height: 100px;">
-						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="3-5"><script type="text/template">
-							# Copiar el archivo de origen al archivo de destino inicialmente
-							shutil.copy2(self.source_file, self.destination_file)
-							print("Archivo de destino creado.")
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers=""><script type="text/template">
+							try:
+								shutil.copy2(self.source_file, self.destination_file)
+								print("Archivo de destino creado.")
+							except:
+								print('Copy failed!')
 						</script></code></pre>
 					</section>
 					<section data-auto-animate>
