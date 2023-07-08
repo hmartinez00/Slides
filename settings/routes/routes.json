@@ -6,7 +6,7 @@
         ],
         [
             "scripts/git_update.py",
-            "scripts/index_update2.py"
+            "scripts/index_update.py"
         ]
     ]
 }
