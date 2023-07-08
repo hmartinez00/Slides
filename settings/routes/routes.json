@@ -1,10 +1,12 @@
 {
     "exec": [
         [
-            "Hacer commit automatico"
+            "Hacer commit automatico",
+            "Actualizar"
         ],
         [
-            "scripts/git_update.py"
+            "scripts/git_update.py",
+            "scripts/index_update.py"
         ]
     ]
 }
