@@ -4,7 +4,7 @@
             "Hacer commit automatico"
         ],
         [
-            "git_update.py"
+            "scripts/git_update.py"
         ]
     ]
 }
