@@ -1,0 +1,1 @@
+Hola este es un ejemplo de como puedo conseguir modificar un archivo desde otro archivo, usando un bucle while!
