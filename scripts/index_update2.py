@@ -1,7 +1,5 @@
 import os
 import time
-import shutil
-
 
 curso='python311'
 clase='Intro'
@@ -9,6 +7,7 @@ source_file=os.path.join(curso, clase + '.html')     # ruta_del_archivo_a_monito
 destination_file=os.path.join('../reveal.js', 'index.html') # ruta_del_archivo_destino
 
 def compare_and_update(source_file, destination_file):
+    from datetime import datetime as dt
     with open(source_file, 'r', encoding='utf-8') as source:
         source_content = source.read()
         source.close()
@@ -16,11 +15,11 @@ def compare_and_update(source_file, destination_file):
         destination_content = destination.read()
         destination.close()
     if source_content != destination_content:
-        # shutil.copy2(source_file, destination_file)
         f = open(destination_file, 'w', encoding='utf-8')
         f.write(source_content)
         f.close()
-        print('Actualizado!')
+        time_ud=dt.now().strftime('%H:%M:%S')
+        print(f'[{time_ud}] Actualizado.')
 
 while True:
     compare_and_update(source_file, destination_file)
