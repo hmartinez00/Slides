@@ -1,0 +1,10 @@
+{
+    "exec": [
+        [
+            "Hacer commit automatico"
+        ],
+        [
+            "git_update.py"
+        ]
+    ]
+}
