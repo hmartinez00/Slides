@@ -2,10 +2,12 @@
     "exec": [
         [
             "Hacer commit automatico",
+            "Descomprimir",
             "Actualizar"
         ],
         [
             "scripts/git_update.py",
+            "scripts/descompresor.py",
             "scripts/index_update.py"
         ]
     ]
