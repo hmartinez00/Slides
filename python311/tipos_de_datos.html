@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="css/custome.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="https://www.python.org/static/community_logos/python-logo-generic.svg" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					<h3>¡Bienvenidos a Aprende Python 3 en 11 días!</h3>
+					<p>
+						<small>Creado por <a href="?transition=concave#/transitions">Héctor Martínez.</a></small>
+					</p>
+				</section>
+
+				<section data-transition-speed="convex">
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Instalar correctamente un entorno de Python</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							pip install freedom!
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Comprender la sintáxis de Python</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="7"><script type="text/template">
+							print('Hellow, World!')
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Desarrollar programas avanzados con Python</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers=""><script type="text/template">
+							import sys
+
+							def process_arguments(args):
+							   	print(f"Number of arguments: {len(args)}")
+							   	print("Arguments:")
+							   	for i, arg in enumerate(args):
+								   	print(f"Argument {i + 1}: {arg}")
+							   	if "--help" in args:
+									print("Help message: This script does something.")
+							
+							if __name__ == "__main__":
+							   	process_arguments(sys.argv[1:])
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Emplear estructuras de control de flujo</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="9-11"><script type="text/template">
+							while True:
+								if os.path.getmtime(self.source_file) > os.path.getmtime(self.destination_file):
+									shutil.copy2(self.source_file, self.destination_file)
+									print("Archivo de destino actualizado.")
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Crear funciones y módulos reutilizables</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers="1"><script type="text/template">
+							def start_monitoring(self):
+								if not os.path.exists(self.source_file):
+									print("El archivo de origen no existe.")
+									return
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Manejar archivos y excepciones</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers=""><script type="text/template">
+							try:
+								shutil.copy2(self.source_file, self.destination_file)
+								print("Archivo de destino creado.")
+							except:
+								print('Copy failed!')
+						</script></code></pre>
+					</section>
+					<section data-auto-animate>
+						<h3>¿Qué aprenderás en este curso?</h3>
+						<p>Programación Orientada a Objetos en Python</p>
+						<img src="examples/assets/image1.png" style="height: 100px;">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							import os
+							import shutil
+							
+							class FileMonitor:
+								def __init__(self, source_file, destination_file):
+									self.source_file = source_file
+									self.destination_file = destination_file					
+								...
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>Slice 3</section>
+					<section>Slice 3.1</section>
+					<section>Slice 3.3</section>
+				</section>
+				<section>Slide 4</section>
+				<section>Slide 5</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
