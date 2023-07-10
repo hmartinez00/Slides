@@ -1,13 +1,14 @@
 import os
-import rarfile
+import sys
+import patoolib
+import py7zr
 
-def extract_rar(file_path, destination_path):
-    with rarfile.RarFile(file_path) as rf:
-        rf.extractall(destination_path)
+source_path = 'python311/Ejercicios/ejercicio1.rar'
+outdir = os.getcwd()
+password = "www.compucalitv.com"
 
- # Ruta del archivo RAR que deseas descomprimir
-rar_file_path = 'python311/Ejercicios/ejercicio1.rar'
- # Ruta de destino para la extracción
-destination_path = os.getcwd()
- # Llama a la función para descomprimir el archivo RAR
-extract_rar(rar_file_path, destination_path)
+ # Descomprimir un archivo RAR
+# patoolib.extract_archive(source_path, outdir=outdir)
+
+with py7zr.SevenZipFile(source_path, mode='r', password=password) as z:
+    z.extractall()
