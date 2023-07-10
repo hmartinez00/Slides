@@ -1,0 +1,28 @@
+/* body {
+    color: tomato;
+} */
+
+/* Se ha seleccionado h1 por etiqueta */
+/* h1 {
+    color: tomato;
+} */
+
+/* Se usa # para seleccionar id */
+#titulo {
+    color: tomato;
+}
+
+/* Se usa . para seleccionar class */
+.texto {
+    color: slateblue;
+}
+
+/* Asi se seleccionan las p (los parrafos) que contienen la palabra "texto" en sus clases */
+p.texto {
+    color: slateblue;
+}
+
+/* Asi se seleccionan las p (los parrafos) que contienen la palabra "especial" en sus clases */
+p.especial {
+    color: mediumseagreen;
+}
