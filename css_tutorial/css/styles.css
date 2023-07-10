@@ -17,6 +17,8 @@ LECCION 1
 /* Se usa # para seleccionar id */
 #titulo {
     color: tomato;
+    /* font-size: 10px;
+    border: solid 2em red; */
 }
 
 /* Se usa . para seleccionar class */
@@ -75,17 +77,46 @@ COLOR
 
 /* BORDES */
 .color {
-    border: 5px black solid;
-    /* 
+    /* border: 5px red outset; */
+    /*
+    2D 
         dashed
         dotted
         solid
         double
+    3D
         groove
         ridge
         inset
         outset
+    
         none
         hidden 
     */
+
+    border-style: solid;
+    border-color: blue;
+    border-radius: 5px;
+    border-width: 5px;
+    
+    /* Medidas absolutas */
+    /* border-width: 1cm; centimetro */
+    /* border-width: 5mm; milimetro */
+    /* border-width: 1in; pulgada */
+    /* border-width: 5pt; puntos */
+    /* border-width: 1pc; picas */
+    
+    /* Medidas relativas */
+    border-width: 2em;
+    border-width: 2rem;
+}
+
+
+/* BACKGROUND */
+#fondo {
+    /* background-color: red; */
+    /* background-color: rgba(255,0,0,0.3); */
+    /* opacity: 0.3; */
+    background-image: url('coffee.png');
+    height: 400px;
 }
