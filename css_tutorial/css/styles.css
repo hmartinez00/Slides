@@ -1,3 +1,10 @@
+
+/*
+-----------
+LECCION 1 
+-----------
+*/
+
 /* body {
     color: tomato;
 } */
@@ -17,12 +24,68 @@
     color: slateblue;
 }
 
-/* Asi se seleccionan las p (los parrafos) que contienen la palabra "texto" en sus clases */
+/* Todas las p (los parrafos) que contienen la palabra "texto" en sus clases */
 p.texto {
     color: slateblue;
 }
 
-/* Asi se seleccionan las p (los parrafos) que contienen la palabra "especial" en sus clases */
+/* Todas las p (los parrafos) que contienen la palabra "especial" en sus clases */
 p.especial {
     color: mediumseagreen;
+}
+
+/* Todas las p hijas de div */
+div p {
+    color: aquamarine;
+}
+
+/* Todas las h2 hijas de div */
+div h2, div h3 {
+    color: brown;
+}
+
+/* TODOS LOS ELEMENTOS! */
+* {
+    font-size: 24px;
+    /* color: black; */
+}
+
+
+/*
+-----------
+COLOR
+-----------
+*/
+
+.color {
+    /* Usando terna Hexadecimal */
+    /* los valores van de 0 a f es la maxima intensidad */
+    /* f es la maxima intensidad */
+    /* El siguiente ejemplo el color es rojo intenso */
+    color: #f00;
+    
+    /* Usando seis valores hexadecimales */
+    /* El siguiente ejemplo el color es verde intenso */
+    color: #00ff00;
+
+    /* El famoso rgb */
+    color: rgb(0,0,255);
+}
+
+
+/* BORDES */
+.color {
+    border: 5px black solid;
+    /* 
+        dashed
+        dotted
+        solid
+        double
+        groove
+        ridge
+        inset
+        outset
+        none
+        hidden 
+    */
 }
