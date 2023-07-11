@@ -27,7 +27,7 @@
 
 				<section data-transition-speed="concave">
 					<section data-auto-animate>
-						<h3>Strings</h2>
+						<h3>Tipos de datos</h2>
 						<table>
 							<tbody>
 								<tr>
@@ -74,7 +74,7 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
 					<h3>La función <span style="color: rgb(78, 201, 176);">type</span></h3>
 					<p>Determinando el tipo de dato</p>
 					<p style="text-align: left; font-size: 25px;">Entrada:</p>
@@ -85,15 +85,39 @@
 						...
 					</code></pre>
 					<p style="text-align: left; font-size: 25px;">Salida:</p>
-					<pre><code data-trim>
-						class 'str'
-						class 'int'
-						class 'float'
-						...
-					</code></pre>
+						<pre><code data-trim>
+							class 'str'
+							class 'int'
+							class 'float'
+							...
+						</code></pre>
 				</section>
 
-				
+				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+					<h3>"Strings"</h3>
+					<div data-id="box1">
+						<pre data-id="code"><code data-line-numbers class="hljs" data-trim>
+							print(type('Hellow, World!'))
+						</code></pre>
+					</div>
+				</section>
+				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+					<h3>"Strings"</h3>
+					<ol style="text-align: left; font-size: 20px;">
+						<li>`len()` : Devuelve la longitud de la cadena.</li>
+						<li>`lower()` : Convierte la cadena a minúsculas.</li>
+						<li>`upper()` : Convierte la cadena a mayúsculas.</li>
+						<li>`capitalize()` : Convierte el primer carácter de la cadena a mayúscula y el resto a minúsculas.</li>
+						<li>`title()` : Convierte el primer carácter de cada palabra en la cadena a mayúscula y el resto a minúsculas.</li>
+						<li>`strip()` : Elimina los espacios en blanco al principio y al final de la cadena.</li>
+						<li>`split()` : Divide la cadena en una lista de subcadenas utilizando un delimitador especificado.</li>
+						<li>`replace()` : Reemplaza una subcadena por otra en la cadena.</li>
+						<li>`find()` : Devuelve la posición de la primera aparición de una subcadena en la cadena.</li>
+						<li>`startswith()` : Verifica si la cadena comienza con una subcadena especificada.</li>
+						<li>`endswith()` : Verifica si la cadena termina con una subcadena especificada.</li>
+						<li>`join()` : Une una lista de cadenas utilizando la cadena original como separador.</li>
+					</ol>
+				</section>
 
 			</div>
 		</div>

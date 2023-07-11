@@ -1,7 +1,7 @@
 {
     "exec": [
         [
-            "Hacer commit automatico",
+            "Hacer autocommit",
             "Descomprimir",
             "Actualizar"
         ],
