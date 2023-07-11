@@ -1,4 +1,8 @@
 '''
+Definición: En Python, las cadenas de caracteres (strings) son consideradas como objetos. Son instancias de la clase  str , lo que significa que tienen métodos y atributos asociados a ellas. Esto permite que se puedan manipular y formatear utilizando los métodos proporcionados por la clase  str . 
+Además, las cadenas de caracteres en Python son inmutables, lo que significa que no se pueden modificar directamente. Sin embargo, se pueden realizar operaciones con ellas, como concatenación (+), repetición (*), indexación y segmentación. 
+
+SUMARIO:
  1. Operaciones básicas:
    - Concatenación de cadenas:  `+` 
    - Repetición de cadenas:  `*` 
@@ -24,7 +28,7 @@
     - \Uhhhhhhhh: valor Unicode de 32 bits (reemplaza hhhhhhhh por un número hexadecimal de ocho dígitos) 
 Estas secuencias de escape se utilizan para representar caracteres que de otra manera serían difíciles de incluir en una cadena de texto.
 
- 3. Métodos de formato y manipulación:
+ 3. Métodos de manipulación y formato:
    -  `capitalize()` : Convierte el primer carácter en mayúscula y el resto en minúsculas.
    -  `casefold()` : Devuelve una versión en minúsculas de la cadena.
    -  `center(width[, fillchar])` : Devuelve una cadena centrada en un ancho dado.
@@ -132,7 +136,7 @@ print("\u00A9")  # Salida: ©
 print("\U0001F600")  # Salida: 😀
 
 
-# 3. Métodos de formato y manipulación:
+# 3. Métodos de manipulación y formato:
 # -----------------------------------------------------------------------
 # capitalize(): Convierte el primer carácter en mayúscula y el resto en minúsculas.
 print("hola mundo".capitalize())  # Salida: Hola mundo
@@ -236,10 +240,11 @@ print(mensaje)
 # Método  % :
 mensaje = "Hola, mi nombre es %s y tengo %d años." % (nombre, edad)
 print(mensaje)
+# "%s" y "%d" son marcadores de formato que se utilizan para insertar valores variables en una cadena de texto.
 
 '''
 Aquí tienes una lista de los marcadores de formato más comunes en Python:
- - %s: utilizado para cadenas de caracteres (strings).
+- %s: utilizado para cadenas de caracteres (strings).
 - %d: utilizado para números enteros (integers).
 - %f: utilizado para números de punto flotante (floats).
 - %x: utilizado para números enteros en formato hexadecimal.

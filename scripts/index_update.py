@@ -2,7 +2,7 @@ import os
 import time
 
 curso='python311'
-clase='tipos_de_datos'
+clase='clase2/tipos_de_datos'
 source_file=os.path.join(curso, clase + '.html')     # ruta_del_archivo_a_monitorear
 destination_file=os.path.join('../reveal.js', 'index.html') # ruta_del_archivo_destino
 

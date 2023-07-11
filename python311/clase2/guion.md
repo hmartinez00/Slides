@@ -1,0 +1,1 @@
+Las cadenas de manera muy basica son secuencias de caracteres con las cuales podemos interactuar de formas especificas mediante a traves de operacion y lo que se denomina metodos.
