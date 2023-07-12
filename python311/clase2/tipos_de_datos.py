@@ -77,28 +77,28 @@ Estas secuencias de escape se utilizan para representar caracteres que de otra m
 '''
 
 
-# 1. Operaciones con strings
+## 1. Operaciones con strings
 # -----------------------------------------------------------------------
-#    - Concatenación de cadenas:  `+` 
+###    - Concatenación de cadenas:  `+` 
 cadena1 = "Hola"    #Con comillas dobles
 cadena2 = 'Mundo'   #Con comillas simples
 cadena = cadena1 + " " + cadena2
 print(cadena)
-#    - Indexación:  `[]`
+###    - Indexación:  `[]`
 primer_caracter = cadena[0]
 print(primer_caracter)
-#    - Repetición de cadenas:  `*` 
+###    - Repetición de cadenas:  `*` 
 repetida = cadena * 3
 print(repetida)
-#    - Slicing:  `[:]`
+###    - Slicing:  `[:]`
 subcadena = cadena[0:4]
 print(subcadena)
-#    - Verificación de pertenencia:  `in` ,  `not in` 
+###    - Verificación de pertenencia:  `in` ,  `not in` 
 if "Mundo" in cadena:
     print("La cadena contiene 'Mundo'")
 
 
-#  2. Secuencias de escape:
+##  2. Secuencias de escape:
 # -----------------------------------------------------------------------
 # \n: nueva línea - Inserta una nueva línea en la cadena
 print("Hola\nMundo")  # Salida: 

@@ -1,0 +1,286 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Clase 2 - Stings en Python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Definición: \n",
+    "\n",
+    "En Python, las cadenas de caracteres (strings) son consideradas como objetos. Son instancias de la clase  str , lo que significa que tienen métodos y atributos asociados a ellas. Esto permite que se puedan manipular y formatear utilizando los métodos proporcionados por la clase  str . \n",
+    "\n",
+    "Además, las cadenas de caracteres en Python son inmutables, lo que significa que no se pueden modificar directamente. Sin embargo, se pueden realizar operaciones con ellas, como concatenación (+), repetición (*), indexación y segmentación."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 1. Operaciones con strings"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### - Concatenación de cadenas:  `+` "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hola Mundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "cadena1 = \"Hola\"    #Con comillas dobles\n",
+    "cadena2 = 'Mundo'   #Con comillas simples\n",
+    "cadena = cadena1 + \" \" + cadena2\n",
+    "print(cadena)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###    - Indexación:  `[]`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "H\n"
+     ]
+    }
+   ],
+   "source": [
+    "primer_caracter = cadena[0]\n",
+    "print(primer_caracter)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###    - Repetición de cadenas:  `*` "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hola MundoHola MundoHola Mundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "repetida = cadena * 3\n",
+    "print(repetida)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###    - Slicing:  `[:]`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hola\n"
+     ]
+    }
+   ],
+   "source": [
+    "subcadena = cadena[0:4]\n",
+    "print(subcadena)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###    - Verificación de pertenencia:  `in` ,  `not in` "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\"Mundo\" in cadena"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##  2. Secuencias de escape:"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### \\n: nueva línea - Inserta una nueva línea en la cadena"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hola\n",
+      "Mundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Hola\\nMundo\")  # Salida: \n",
+    "# Hola\n",
+    "# Mundo"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### \\r: retorno de carro - Mueve el cursor al inicio de la línea actual"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Mundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Hola\\rMundo\")  # Salida: Mundo"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### \\t: tabulación horizontal - Inserta un espacio de tabulación en la cadena"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hola\tMundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Hola\\tMundo\")  # Salida: Hola     Mundo"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### \\b: retroceso - Retrocede el cursor un espacio"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "HolMundo\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Hola\\bMundo\")  # Salida: HolMundo"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.4"
+  },
+  "orig_nbformat": 4
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
