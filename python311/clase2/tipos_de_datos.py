@@ -136,7 +136,7 @@ print("\u00A9")  # Salida: ©
 print("\U0001F600")  # Salida: 😀
 
 
-# 3. Métodos de manipulación y formato:
+# 3. Métodos de manipulación:
 # -----------------------------------------------------------------------
 # capitalize(): Convierte el primer carácter en mayúscula y el resto en minúsculas.
 print("hola mundo".capitalize())  # Salida: Hola mundo
