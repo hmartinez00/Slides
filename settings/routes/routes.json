@@ -3,12 +3,14 @@
         [
             "Hacer autocommit",
             "Descomprimir",
-            "Actualizar"
+            "Actualizar",
+            "Respaldo Laravel project"
         ],
         [
             "scripts/git_update.py",
             "scripts/descompresor.py",
-            "scripts/index_update.py"
+            "scripts/index_update.py",
+            "scripts/private_backup.py"
         ]
     ]
 }
