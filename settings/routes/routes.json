@@ -4,13 +4,15 @@
             "Hacer autocommit",
             "Descomprimir",
             "Actualizar",
-            "Respaldo Laravel project"
+            "Respaldo Laravel project",
+            "Prueba"
         ],
         [
             "scripts/git_update.py",
             "scripts/descompresor.py",
             "scripts/index_update.py",
-            "scripts/private_backup.py"
+            "scripts/private_backup.py",
+            "scripts/test.py"
         ]
     ]
 }
