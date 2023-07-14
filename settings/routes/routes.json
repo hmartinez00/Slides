@@ -2,6 +2,7 @@
     "exec": [
         [
             "Hacer autocommit",
+            "Autolimpieza",
             "Descomprimir",
             "Actualizar",
             "Respaldo Laravel project",
@@ -9,6 +10,7 @@
         ],
         [
             "scripts/git_update.py",
+            "scripts/sys_clean.py",
             "scripts/descompresor.py",
             "scripts/index_update.py",
             "scripts/private_backup.py",
