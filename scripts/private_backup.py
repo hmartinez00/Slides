@@ -1,7 +1,7 @@
 import os
 
 dir = os.getcwd()
-project = 'laravel/hellowworld'
+project = 'laravel/ejemplo'
 file = '.gitignore'
 
 path = os.path.join(dir, project, file)
