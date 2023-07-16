@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(31, 31, 31);
+}
+
+.box {
+    color: rgb(110, 118, 129);
+    font-size: large;
+    font-family: sans-serif;
+    text-align: center;
+
+    height: 2rem;
+    width: 100%;
+
+    background-color: rgb(30, 30, 30);
+
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(42, 42, 42);
+
+    border-radius: 5px;
+
+}
+
+.box:hover {
+    color: rgb(215, 215, 215);
+    background-color: rgb(70, 70, 70);
+}
