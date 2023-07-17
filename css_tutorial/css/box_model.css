@@ -1,0 +1,25 @@
+.box {
+  /* El tamano del elemento */
+  width: 100px;
+  height: 100px;
+
+  /* El modelo de caja */
+    /* color de fondo del elemento */
+  background-color: blue;
+    /* padding */
+  padding: 10px;
+    /* borde */
+  border: 30px solid red;
+    /* margen */
+  margin: 20px;
+  outline: 20px solid purple;
+
+  /* Fuente: */
+    /* Alineacion */
+  text-align: center;
+    /* color */
+  color: aliceblue;
+    /* tamano */
+  font-size: 20px;  
+
+}

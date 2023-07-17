@@ -1,0 +1,76 @@
+body {
+    background-color: rgb(31, 31, 31);
+}
+
+nav {
+    background-color: rgb(20,20,20);
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(42, 42, 42);
+    border-radius: 5px;
+}
+
+footer {
+    background-color: rgb(20,20,20);
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+    width: 100%;
+
+    color: rgb(160, 160, 160);
+    text-align: center;
+
+    font-size: normal;
+    font-family: sans-serif;
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    text-decoration: none;
+    display: inline;
+}
+
+ul > li > a {
+    color: rgb(160, 160, 160);
+    font-size: large;
+    font-family: sans-serif;
+    /* text-align: center; */
+
+    background-color: rgb(35, 35, 35);
+
+    padding: 10px;
+    border-width: 1px;
+    /* border-style: solid; */
+    /* border-color: rgb(42, 42, 42); */
+    border-radius: 5px;
+
+}
+
+ul > li > a:hover {
+    color: rgb(215, 215, 215);
+    background-color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+
+ul > li > a:active {
+    color: rgb(230, 230, 230);
+    background-color: rgb(100, 100, 100);
+}
+
+footer:hover {
+    color: rgb(215, 215, 215);
+}
