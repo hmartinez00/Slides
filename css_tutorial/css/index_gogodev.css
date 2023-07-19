@@ -2,3 +2,13 @@ body {
     color: antiquewhite;
     background-color: rgb(31,31,31);    
 }
+
+h1 {
+    color: violet;
+    font-size: 72px;
+}
+
+p {
+    color: greenyellow;
+    font-size: 40px;
+}
