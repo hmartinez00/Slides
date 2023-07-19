@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, p, div, h3, b {
+    border: 2px solid black;
+
+    /* display */
+    /* display: block; */
+    /* display: inline; */
+    /* display: none; */
+    /* display: inline-block; */
+}
+
+h1 {
+    margin: 10px;
+    padding: 10px;
+
+    margin-left: 80px;
+    margin-right: 10px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+div {
+
+    /* padding: 25px; */
+    padding-left: 50px;
+    padding-top: 29px;
+    padding-right: 70px;
+    padding-bottom: 5px;
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+}
