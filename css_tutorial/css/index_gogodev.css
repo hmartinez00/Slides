@@ -3,8 +3,8 @@ body {
     background-color: rgb(31,31,31);    
 }
 
-h1 {
-    color: violet;
+h1, h2, h3, h4, h5, h6, .title, #my-title {
+    color: violet !important;
 }
 
 p {
@@ -17,5 +17,31 @@ p {
 
 #my-p {
     color: aquamarine;
+}
+
+.card a {
+    color: aqua;
+    text-decoration: none;
+}
+
+div ul li a {
+    color: white;
+}
+
+
+nav ul li a {
+    font-size: 52px;
+}
+
+a[href='/'] {
+    color: red;
+}
+
+.title {
+    color: red;
+}
+
+#title {
+    color: brown;
 }
 
