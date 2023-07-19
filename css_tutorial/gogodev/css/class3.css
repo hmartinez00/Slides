@@ -35,3 +35,18 @@ div {
     margin-bottom: 10px;
     
 }
+
+div h3 {
+    border-width: 4px;
+    border-color: red;
+    border-style: double;
+    margin-bottom: 10px;
+
+    border-top: dotted blue;
+
+    border-radius: 10px;
+}
+
+.title {
+    background-color: rgb(205, 205, 205, 3);
+}
