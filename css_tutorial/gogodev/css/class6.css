@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(31,31,31);
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+
+    /* background-color: purple; */
+    background-image: url('guitarra.png');
+    /* background-position: 50%; */
+    background-size: cover;
+    /* background-size: contain; */
+
+    border-radius: 50%;
+}
+
+h1 {
+    background-color: brown;
+    color: white;
+}
+
+.card-2 h1 {
+    background: linear-gradient(285deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 32%, rgba(157,5,177,1) 48%, rgba(179,91,210,1) 64%, rgba(0,212,255,1) 100%);
+}
