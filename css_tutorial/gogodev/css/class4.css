@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    background-color: red;
+    color: white;
+    padding: 15px;
+
+    /* position: static; */
+    position: relative;
+    top: 100px;
+    left: 250px;
+}
+
+p {
+    background-color: blueviolet;
+    color: white;
+    padding: 15px;
+
+    /* position: static; */
+    position: relative;
+    right: 20%;
+}
+
