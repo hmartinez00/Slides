@@ -56,3 +56,8 @@ li a:hover {
     margin-right: 30px;
     text-align: justify;
 }
+
+p {
+    display: block;
+    padding: 5px;
+}
