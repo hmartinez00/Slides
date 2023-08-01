@@ -5,3 +5,4 @@ blade/
 modeldata/
 controllers/
 crud/
+api_crud/
