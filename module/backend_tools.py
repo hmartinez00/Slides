@@ -25,11 +25,18 @@ class laravel_orders():
         '''
         main_description: Nuevo proyecto.
         '''
-        import subprocess
         self.project_name = input('Nombre del Proyecto: ')
         self.project_path = os.path.join(self.dir_path, self.project_name)
-        # subprocess.run(["laravel", "new", project_name])
-        print(os.getcwd())
+        os.chdir(self.dir_path)
+        os.system(f'laravel new {self.project_name}')
+
+        # Creando database
+        try:
+            self.conn_database()
+        except:
+            print("Error al conectar.")
+
+
     
     def conn_project(self):
         '''
@@ -46,14 +53,42 @@ class laravel_orders():
 
         if len(proyectos_laravel)>0:
             print("Se encontraron los siguientes proyectos Laravel:")
-            # for proyecto in proyectos_laravel:
-            #     print(proyecto)
+            self.project_path = option_list(proyectos_laravel)
+            print(self.project_path)
 
-            proyecto = option_list(proyectos_laravel)
-            print(proyecto)
+            self.project_name = os.path.basename(self.project_path)
 
         else:
             print("No se encontraron proyectos Laravel en el directorio general.")
+
+
+    def conn_database(self):
+        '''
+        main_description: Verificar conexion DB
+        '''
+        import mysql.connector
+        # Instanciamos
+        cnx = mysql.connector.connect(
+            host = 'localhost',
+            user = 'root',
+            password = ''
+        )
+        # Verificamos el estado
+        if cnx.is_connected():
+            # Creamos el cursor para poder enviar las querys
+            curs = cnx.cursor()
+            # Diseñamos la query
+            print(f'Creando database: {self.project_name}')
+            sql = f'CREATE DATABASE {self.project_name}'
+            # Ejecutamos la query
+            curs.execute(sql)
+            # Cerramos el cursor
+            curs.close()
+            # Cerramos la conexion
+            cnx.close()
+        # Verificamos el estado
+        if not cnx.is_connected():
+            print('Conexion cerrada.')
 
 
     def attributes(self):
