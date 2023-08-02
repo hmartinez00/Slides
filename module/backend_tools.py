@@ -34,7 +34,7 @@ class laravel_orders():
         try:
             self.conn_database()
         except:
-            print("Error al conectar.")
+            print("Error al conectar DB.")
 
 
     
