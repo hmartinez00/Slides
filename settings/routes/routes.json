@@ -5,7 +5,7 @@
             "Autolimpieza",
             "Descomprimir",
             "Actualizar",
-            "Opciones Laravel",
+            "Opciones Backend",
             "Respaldo Laravel project",
             "Prueba"
         ],
@@ -14,7 +14,7 @@
             "scripts/sys_clean.py",
             "scripts/descompresor.py",
             "scripts/index_update.py",
-            "scripts/laravel_menu.py",
+            "scripts/backend_menu.py",
             "scripts/private_backup.py",
             "scripts/test.py"
         ]
