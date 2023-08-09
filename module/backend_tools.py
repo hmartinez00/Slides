@@ -153,6 +153,15 @@ class laravel_orders():
         os.system(f'php artisan make:controller {controller_name}')
 
 
+    def makeresource(self):
+        '''
+        main_description: makeresource.
+        '''
+        resource_name = input('resource name: ')
+        os.chdir(self.project_path)
+        os.system(f'php artisan make:resource {resource_name}')
+
+
     def dbseed(self):
         '''
         main_description: dbseed.
