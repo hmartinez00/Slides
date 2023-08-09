@@ -1,5 +1,4 @@
 import os
-from turtle import width
 from General_Utilities.option_list import option_list
 
 
