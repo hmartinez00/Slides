@@ -21,6 +21,14 @@ class laravel_orders():
         self.dir_path = dir_path
 
 
+    def location(self):
+        '''
+        main_description: Directorio Actual.
+        '''
+        dir = os.getcwd()
+        print(dir)
+
+
     def new_project(self):
         '''
         main_description: Nuevo proyecto.
@@ -94,10 +102,25 @@ class laravel_orders():
         '''
         main_description: Atributos.
         '''
-
         print(
             self.dir_path,
             self.project_name,
             self.project_path,
         )
 
+
+    def new_model(self):
+        '''
+        main_description: Nuevo modelo.
+        '''
+        model_name = input('Nombre del modelo: ')
+        os.chdir(self.project_path)
+        os.system(f'php artisan make:model {model_name} --migration')
+
+
+    def migrate(self):
+        '''
+        main_description: Migrar.
+        '''
+        os.chdir(self.project_path)
+        os.system(f'php artisan migrate')
