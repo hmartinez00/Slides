@@ -36,7 +36,6 @@ class laravel_orders():
         except:
             print("Error al conectar DB.")
 
-
     
     def conn_project(self):
         '''
