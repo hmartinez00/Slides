@@ -1,4 +1,5 @@
 import os
+from turtle import width
 from General_Utilities.option_list import option_list
 
 
@@ -20,20 +21,31 @@ class laravel_orders():
 
         self.dir_path = dir_path
 
+   
+    def attributes(self):
+        '''
+        main_description: attributes.
+        '''
+        print(
+            self.dir_path,
+            self.project_name,
+            self.project_path,
+        )
+
 
     def location(self):
         '''
-        main_description: Directorio Actual.
+        main_description: location.
         '''
         dir = os.getcwd()
         print(dir)
 
 
-    def new_project(self):
+    def laravel_new(self):
         '''
-        main_description: Nuevo proyecto.
+        main_description: laravel new.
         '''
-        self.project_name = input('Nombre del Proyecto: ')
+        self.project_name = input('proyect name: ')
         self.project_path = os.path.join(self.dir_path, self.project_name)
         os.chdir(self.dir_path)
         os.system(f'laravel new {self.project_name}')
@@ -69,9 +81,9 @@ class laravel_orders():
             print("No se encontraron proyectos Laravel en el directorio general.")
 
 
-    def conn_database(self):
+    def create_database(self):
         '''
-        main_description: Verificar conexion DB
+        main_description: create database.
         '''
         import mysql.connector
         # Instanciamos
@@ -98,29 +110,77 @@ class laravel_orders():
             print('Conexion cerrada.')
 
 
-    def attributes(self):
+    def serve(self):
         '''
-        main_description: Atributos.
+        main_description: serve.
         '''
-        print(
-            self.dir_path,
-            self.project_name,
-            self.project_path,
-        )
+        os.chdir(self.project_path)
+        os.system(f'php artisan serve')        
 
 
-    def new_model(self):
+    def makemodel(self):
         '''
-        main_description: Nuevo modelo.
+        main_description: makemodel.
         '''
-        model_name = input('Nombre del modelo: ')
+        model_name = input('model name: ')
         os.chdir(self.project_path)
         os.system(f'php artisan make:model {model_name} --migration')
 
 
-    def migrate(self):
+    def makemigrate(self):
         '''
-        main_description: Migrar.
+        main_description: makemigrate.
         '''
         os.chdir(self.project_path)
         os.system(f'php artisan migrate')
+
+
+    def makeseeder(self):
+        '''
+        main_description: makeseeder.
+        '''
+        seeder_name = input('seeder name: ')
+        os.chdir(self.project_path)
+        os.system(f'php artisan make:seeder {seeder_name}')
+
+
+    def makecontroller(self):
+        '''
+        main_description: makecontroller.
+        '''
+        controller_name = input('controller name: ')
+        os.chdir(self.project_path)
+        os.system(f'php artisan make:controller {controller_name}')
+
+
+    def dbseed(self):
+        '''
+        main_description: dbseed.
+        '''
+        os.chdir(self.project_path)
+        os.system(f'php artisan db:seed')
+
+
+    def newview(self):
+        '''
+        main_description: newview.
+        '''
+        view_name = input('view name: ')
+        view_path = os.path.join(self.project_path, 'resources', 'views', view_name + '.blade.php')
+        with open(view_path, 'w', encoding='utf-8') as view:
+            content = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{view_name}</title>
+</head>
+<body>
+    
+</body>
+</html>
+'''
+            view.write(content)
+            view.close()
+
+
