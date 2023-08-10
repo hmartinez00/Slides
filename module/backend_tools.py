@@ -19,18 +19,47 @@ class laravel_orders():
         dir_path = filedialog.askdirectory()
 
         self.dir_path = dir_path
-
         self.orders = [
-            'laravel new',
-            'php artisan serve',
-            'php artisan migrate',
-            'php artisan db:seed',
-            'php artisan make:model',
-            'php artisan make:migration',
-            'php artisan make:seeder',
-            'php artisan make:controller',
-            'php artisan make:resource',
+            'laravel new', 
+             # Crea un nuevo proyecto de Laravel en un directorio específico.
+            'php artisan serve', 
+             # Inicia el servidor de desarrollo de Laravel.
+            'php artisan migrate', 
+             # Ejecuta las migraciones pendientes para actualizar la base de datos.
+            'php artisan migrate:rollback', 
+             # Revierte la última migración realizada.
+            'php artisan migrate:reset', 
+             # Revierte todas las migraciones realizadas.
+            'php artisan migrate:refresh', 
+             # Revierte y vuelve a ejecutar todas las migraciones.
+            'php artisan migrate:status', 
+             # Muestra el estado actual de todas las migraciones.
+            'php artisan db:seed', 
+             # Ejecuta los seeders registrados para poblar la base de datos.
+            'php artisan make:model', 
+             # Crea un nuevo modelo en la carpeta "app" de tu proyecto.
+            'php artisan make:migration', 
+             # Crea un nuevo archivo de migración en la carpeta "database/migrations".
+            'php artisan make:seeder', 
+             # Crea un nuevo archivo de seeder en la carpeta "database/seeds".
+            'php artisan make:controller', 
+             # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
+            'php artisan make:resource', 
+             # Crea una nueva clase de recurso en la carpeta "app/Http/Resources".
         ]
+
+
+    def action(self, index, value):
+        '''
+        Metodo de aplicacion de acciones
+        '''
+        os.chdir(self.project_path)
+        if value != None:
+            value = input('Name: ')
+            order = self.orders[int(index) + ' ' + value]
+        else:
+            order = self.orders[int(index)]
+        os.system(order)
 
    
     def attributes(self):
@@ -125,9 +154,9 @@ class laravel_orders():
         '''
         main_description: serve.
         '''
-        os.chdir(self.project_path)
-        os.system(f'php artisan serve')        
-
+        # os.chdir(self.project_path)
+        # os.system(f'php artisan serve')        
+        self.action(1)
 
     def makemodel(self):
         '''
