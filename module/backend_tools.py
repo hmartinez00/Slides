@@ -20,6 +20,22 @@ class laravel_orders():
 
         self.dir_path = dir_path
 
+        self.orders = {
+            'new'       : 'laravel new',
+            'artisan'   : {
+                'serve'     : [],
+                'migrate'   : [],
+                'db'        : ['seed'],
+                'make'      : [
+                    'model',
+                    'migration',
+                    'seeder',
+                    'controller',
+                    'resource',
+                ],
+            }
+        }
+
    
     def attributes(self):
         '''
@@ -126,12 +142,13 @@ class laravel_orders():
         os.system(f'php artisan make:model {model_name} --migration')
 
 
-    def makemigrate(self):
+    def makemigration(self):
         '''
-        main_description: makemigrate.
+        main_description: makemigration.
         '''
+        migration_name = input('migration name: ')
         os.chdir(self.project_path)
-        os.system(f'php artisan migrate')
+        os.system(f'php artisan make:migration {migration_name}')
 
 
     def makeseeder(self):
@@ -159,6 +176,14 @@ class laravel_orders():
         resource_name = input('resource name: ')
         os.chdir(self.project_path)
         os.system(f'php artisan make:resource {resource_name}')
+
+
+    def migrate(self):
+        '''
+        main_description: migrate.
+        '''
+        os.chdir(self.project_path)
+        os.system(f'php artisan migrate')
 
 
     def dbseed(self):
