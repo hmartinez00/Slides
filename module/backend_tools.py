@@ -1,5 +1,6 @@
 import os
 from General_Utilities.option_list import option_list
+from General_Utilities.control_rutas import setting_routes
 
 
 class laravel_orders():
@@ -17,49 +18,50 @@ class laravel_orders():
         root = tk.Tk()
         root.withdraw()
         dir_path = filedialog.askdirectory()
-
+        self.base_path = setting_routes('dir')[0]
         self.dir_path = dir_path
-        self.orders = [
-            'laravel new', 
+        self.orders = {
+            'new'       : 'laravel new', 
              # Crea un nuevo proyecto de Laravel en un directorio específico.
-            'php artisan serve', 
+            'serve'     : 'php artisan serve', 
              # Inicia el servidor de desarrollo de Laravel.
-            'php artisan migrate', 
+            'migrate'   : 'php artisan migrate', 
              # Ejecuta las migraciones pendientes para actualizar la base de datos.
-            'php artisan migrate:rollback', 
+            'rollback'  : 'php artisan migrate:rollback', 
              # Revierte la última migración realizada.
-            'php artisan migrate:reset', 
+            'reset'     : 'php artisan migrate:reset', 
              # Revierte todas las migraciones realizadas.
-            'php artisan migrate:refresh', 
+            'refresh'   : 'php artisan migrate:refresh', 
              # Revierte y vuelve a ejecutar todas las migraciones.
-            'php artisan migrate:status', 
+            'status'    : 'php artisan migrate:status', 
              # Muestra el estado actual de todas las migraciones.
-            'php artisan db:seed', 
+            'seed'      : 'php artisan db:seed', 
              # Ejecuta los seeders registrados para poblar la base de datos.
-            'php artisan make:model', 
+            'model'     : 'php artisan make:model', 
              # Crea un nuevo modelo en la carpeta "app" de tu proyecto.
-            'php artisan make:migration', 
+            'migration' : 'php artisan make:migration', 
              # Crea un nuevo archivo de migración en la carpeta "database/migrations".
-            'php artisan make:seeder', 
+            'seeder'    : 'php artisan make:seeder', 
              # Crea un nuevo archivo de seeder en la carpeta "database/seeds".
-            'php artisan make:controller', 
+            'controller': 'php artisan make:controller', 
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
-            'php artisan make:resource', 
+            'resource'  : 'php artisan make:resource', 
              # Crea una nueva clase de recurso en la carpeta "app/Http/Resources".
-        ]
+        }
 
 
-    def action(self, index, value):
+    def action(self, key, value=None):
         '''
         Metodo de aplicacion de acciones
         '''
         os.chdir(self.project_path)
         if value != None:
-            value = input('Name: ')
-            order = self.orders[int(index) + ' ' + value]
+            value = value
+            order = self.orders[key] + ' ' + value
         else:
-            order = self.orders[int(index)]
+            order = self.orders[key]
         os.system(order)
+        os.chdir(self.base_path)
 
    
     def attributes(self):
@@ -67,9 +69,14 @@ class laravel_orders():
         main_description: attributes.
         '''
         print(
-            self.dir_path,
-            self.project_name,
-            self.project_path,
+            '\n'.join(
+                [
+                    self.base_path,
+                    self.dir_path,
+                    self.project_name,
+                    self.project_path,
+                ]
+            )
         )
 
 
@@ -154,9 +161,8 @@ class laravel_orders():
         '''
         main_description: serve.
         '''
-        # os.chdir(self.project_path)
-        # os.system(f'php artisan serve')        
-        self.action(1)
+        self.action('serve')
+
 
     def makemodel(self):
         '''
@@ -172,8 +178,9 @@ class laravel_orders():
         main_description: makemigration.
         '''
         migration_name = input('migration name: ')
-        os.chdir(self.project_path)
-        os.system(f'php artisan make:migration {migration_name}')
+        # os.chdir(self.project_path)
+        # os.system(f'php artisan make:migration {migration_name}')
+        self.action(9, migration_name)
 
 
     def makeseeder(self):
