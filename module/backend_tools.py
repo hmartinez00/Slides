@@ -75,6 +75,7 @@ class laravel_orders():
                     self.dir_path,
                     self.project_name,
                     self.project_path,
+                    self.orders
                 ]
             )
         )
@@ -93,9 +94,8 @@ class laravel_orders():
         main_description: laravel new.
         '''
         self.project_name = input('proyect name: ')
+        self.action('new', self.project_name)
         self.project_path = os.path.join(self.dir_path, self.project_name)
-        os.chdir(self.dir_path)
-        os.system(f'laravel new {self.project_name}')
 
         # Creando database
         try:
@@ -163,68 +163,52 @@ class laravel_orders():
         '''
         self.action('serve')
 
-
     def makemodel(self):
         '''
         main_description: makemodel.
         '''
         model_name = input('model name: ')
-        os.chdir(self.project_path)
-        os.system(f'php artisan make:model {model_name} --migration')
-
+        self.action('model', model_name)
 
     def makemigration(self):
         '''
         main_description: makemigration.
         '''
         migration_name = input('migration name: ')
-        # os.chdir(self.project_path)
-        # os.system(f'php artisan make:migration {migration_name}')
-        self.action(9, migration_name)
-
+        self.action('migration', migration_name)
 
     def makeseeder(self):
         '''
         main_description: makeseeder.
         '''
         seeder_name = input('seeder name: ')
-        os.chdir(self.project_path)
-        os.system(f'php artisan make:seeder {seeder_name}')
-
+        self.action('seeder', seeder_name)
 
     def makecontroller(self):
         '''
         main_description: makecontroller.
         '''
         controller_name = input('controller name: ')
-        os.chdir(self.project_path)
-        os.system(f'php artisan make:controller {controller_name}')
-
+        self.action('controller', controller_name)
 
     def makeresource(self):
         '''
         main_description: makeresource.
         '''
         resource_name = input('resource name: ')
-        os.chdir(self.project_path)
-        os.system(f'php artisan make:resource {resource_name}')
-
+        self.action('resource', resource_name)
 
     def migrate(self):
         '''
         main_description: migrate.
         '''
-        os.chdir(self.project_path)
-        os.system(f'php artisan migrate')
-
+        self.action('migrate')
 
     def dbseed(self):
         '''
         main_description: dbseed.
         '''
-        os.chdir(self.project_path)
-        os.system(f'php artisan db:seed')
-
+        self.action('seed')
 
     def newview(self):
         '''
