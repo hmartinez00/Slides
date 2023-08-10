@@ -20,21 +20,17 @@ class laravel_orders():
 
         self.dir_path = dir_path
 
-        self.orders = {
-            'new'       : 'laravel new',
-            'artisan'   : {
-                'serve'     : [],
-                'migrate'   : [],
-                'db'        : ['seed'],
-                'make'      : [
-                    'model',
-                    'migration',
-                    'seeder',
-                    'controller',
-                    'resource',
-                ],
-            }
-        }
+        self.orders = [
+            'laravel new',
+            'php artisan serve',
+            'php artisan migrate',
+            'php artisan db:seed',
+            'php artisan make:model',
+            'php artisan make:migration',
+            'php artisan make:seeder',
+            'php artisan make:controller',
+            'php artisan make:resource',
+        ]
 
    
     def attributes(self):
