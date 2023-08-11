@@ -43,6 +43,8 @@ class laravel_orders():
              # Crea un nuevo archivo de migración en la carpeta "database/migrations".
             'seeder'    : 'php artisan make:seeder', 
              # Crea un nuevo archivo de seeder en la carpeta "database/seeds".
+            'factory'  : 'php artisan make:factory', 
+             # Crea una nueva factory en la carpeta "database/factories".
             'controller': 'php artisan make:controller', 
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
             'resource'  : 'php artisan make:resource', 
@@ -95,12 +97,14 @@ class laravel_orders():
         main_description: laravel new.
         '''
         self.project_name = input('proyect name: ')
-        self.action('new', self.project_name)
         self.project_path = os.path.join(self.dir_path, self.project_name)
+        order = f'laravel new {self.project_name}'
+        os.chdir(self.dir_path)
+        os.system(order)
 
         # Creando database
         try:
-            self.conn_database()
+            self.create_database()
         except:
             print("Error al conectar DB.")
 
@@ -201,7 +205,7 @@ class laravel_orders():
         main_description: makemodel.
         '''
         model_name = input('model name: ').capitalize()
-        self.action('model', model_name)
+        self.action('model', model_name + ' --migration')
 
     def makemigration(self):
         '''
@@ -216,6 +220,13 @@ class laravel_orders():
         '''
         seeder_name = option_list(self.model_list()) + 'Seeder'
         self.action('seeder', seeder_name)    
+
+    def makefactory(self):
+        '''
+        main_description: makefactory.
+        '''
+        factory_name = option_list(self.model_list()) + 'Factory'
+        self.action('factory', factory_name)    
 
     def makecontroller(self):
         '''
