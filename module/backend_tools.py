@@ -75,9 +75,10 @@ class laravel_orders():
                     self.dir_path,
                     self.project_name,
                     self.project_path,
-                    self.orders
+                    ''
                 ]
-            )
+            ),
+            self.orders
         )
 
 
@@ -156,6 +157,38 @@ class laravel_orders():
         if not cnx.is_connected():
             print('Conexion cerrada.')
 
+    def model_list(self):
+        '''
+        main_description: model list.
+        '''
+        directorio = os.path.join(self.project_path, 'app', 'Models')
+
+        # Verificar si el directorio existe
+        if not os.path.isdir(directorio):
+            print("El directorio no existe.")
+            return []
+        
+        # Obtener todos los archivos del directorio
+        archivos = os.listdir(directorio)
+        
+        # Lista para almacenar los nombres de los modelos
+        modelos = []
+        
+        # Recorrer cada archivo del directorio
+        for archivo in archivos:
+            # Verificar si el archivo es un modelo (termina con ".php" y no es "Model.php")
+            if archivo.endswith(".php") and archivo != "Model.php":
+                # Agregar el nombre del modelo a la lista
+                modelos.append(archivo[:-4])
+        
+        # Verificar si se encontraron modelos
+        if len(modelos) == 0:
+            print("No se encontraron modelos en el directorio.")
+        
+        # print(modelos)
+
+        return modelos
+
 
     def serve(self):
         '''
@@ -167,7 +200,7 @@ class laravel_orders():
         '''
         main_description: makemodel.
         '''
-        model_name = input('model name: ')
+        model_name = input('model name: ').capitalize()
         self.action('model', model_name)
 
     def makemigration(self):
@@ -181,14 +214,14 @@ class laravel_orders():
         '''
         main_description: makeseeder.
         '''
-        seeder_name = input('seeder name: ')
-        self.action('seeder', seeder_name)
+        seeder_name = option_list(self.model_list()) + 'Seeder'
+        self.action('seeder', seeder_name)    
 
     def makecontroller(self):
         '''
         main_description: makecontroller.
         '''
-        controller_name = input('controller name: ')
+        controller_name = option_list(self.model_list()) + 'Controller'
         self.action('controller', controller_name)
 
     def makeresource(self):
