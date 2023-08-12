@@ -248,6 +248,24 @@ class laravel_orders():
         '''
         self.action('migrate')
 
+    def rollback(self):
+        '''
+        main_description: rollback.
+        '''
+        self.action('rollback')
+
+    def reset(self):
+        '''
+        main_description: reset.
+        '''
+        self.action('reset')
+
+    def refresh(self):
+        '''
+        main_description: refresh.
+        '''
+        self.action('refresh')
+
     def dbseed(self):
         '''
         main_description: dbseed.
