@@ -43,7 +43,7 @@ class laravel_orders():
              # Crea un nuevo archivo de migración en la carpeta "database/migrations".
             'seeder'    : 'php artisan make:seeder', 
              # Crea un nuevo archivo de seeder en la carpeta "database/seeds".
-            'factory'  : 'php artisan make:factory', 
+            'factory'   : 'php artisan make:factory', 
              # Crea una nueva factory en la carpeta "database/factories".
             'controller': 'php artisan make:controller', 
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
