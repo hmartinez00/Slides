@@ -53,6 +53,8 @@ class laravel_orders():
              # Muestra la lista actualizada de rutas del sistema".
         }
 
+        self.conn_project()
+
 
     def action(self, key, value=None):
         '''
@@ -67,7 +69,7 @@ class laravel_orders():
         os.system(order)
         os.chdir(self.base_path)
 
-   
+
     def attributes(self):
         '''
         main_description: attributes.
@@ -113,7 +115,7 @@ class laravel_orders():
     
     def conn_project(self):
         '''
-        main_description: Conectar Proyecto.
+        main_description: conn project.
         '''
         proyectos_laravel = []
         for raiz, directorios, archivos in os.walk(self.dir_path):
@@ -162,6 +164,7 @@ class laravel_orders():
         # Verificamos el estado
         if not cnx.is_connected():
             print('Conexion cerrada.')
+
 
     def model_list(self):
         '''
@@ -212,6 +215,7 @@ class laravel_orders():
     def makemigration(self):
         '''
         main_description: makemigration.
+        Aca hay que poner el nombre. No completa el nombre por defecto.
         '''
         migration_name = input('migration name: ')
         self.action('migration', migration_name)
@@ -241,7 +245,7 @@ class laravel_orders():
         '''
         main_description: makeresource.
         '''
-        resource_name = input('resource name: ')
+        resource_name = option_list(self.model_list()) + 'Resource'
         self.action('resource', resource_name)
 
     def makecontroller_resource(self):
