@@ -376,7 +376,7 @@ y en el "Slides\laravel\relationships\database\seeders\RoleSeeder.php" actualiza
 > Aca culmina el proceso de MANY TO MANY (min 01:10:43)
 
 
-## RELACION DE PASO
+## HAS ONE THROUGH
 > Esta es el tipo de relacion que tiene un modelo con otro indirectamente, apoyandose en la relacion que tienen ambos, con un tercero.
 
 ### Pasos preliminares
@@ -430,7 +430,7 @@ Si no respetara la convencion de laravel, habria que especificar tres parametros
         return $this->hasOneThrough(Sim::class, Phone::class, [sim_param], [phone_param], [local_key]);
     }
 
-### Poblando la Base de datos
+### Repoblando la Base de datos
 .
 
 ### Gestionando la VIEW
@@ -452,4 +452,38 @@ Si no respetara la convencion de laravel, habria que especificar tres parametros
 > (min 01:19:17)
 
 
+## HAS ONE THROUGH
+> Para este tipo de relacion tendremos que modificar la relacion entre los modelos.
 
+### Vinculaciones
+1. En el "Slides\laravel\relationships\app\Models\Phone.php" hacemos el cambio de "HasOne" a "HasMany".
+
+    public function sims():HasMany
+    {
+        return $this->hasMany(Sim::class);
+    }
+
+2. En el "Slides\laravel\relationships\app\Models\User.php" hacemos el cambio de "HasOneThrough" a "HasManyThrough".
+
+    public function phoneSims():HasManyThrough
+    {
+        return $this->hasManyThrough(Sim::class, Phone::class);
+    }
+
+> (min 01:22:29)
+
+## POLIMORFICAS
+### Pasos preliminares
+. 
+
+### Vinculaciones
+.
+
+### Repoblando la Base de datos
+.
+
+### Gestionando la VIEW
+.
+
+### Gestionando la API
+.
