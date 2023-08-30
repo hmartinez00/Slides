@@ -474,16 +474,74 @@ Si no respetara la convencion de laravel, habria que especificar tres parametros
 
 ## POLIMORFICAS
 ### Pasos preliminares
-. 
+1. Creamos otro modelo llamado post e image.
+
+2. Declaramos en:
+"Slides\laravel\relationships\app\Models\Post.php" y en "Slides\laravel\relationships\app\Models\Image.php":
+    protected $guarded = [];
+
+3. Establecemos la estructura en el archivo de migracion:
+"Slides\laravel\relationships\database\migrations\2023_08_30_165644_create_posts_table.php" y "Slides\laravel\relationships\database\migrations\2023_08_30_170049_create_images_table.php".
+
+> Nota: Este paso es crucial para garantizar las vinculaciones!
+
+La clave foranea se establece asi: 
+            $table->unsignedBigInteger('imageable_id');
+            $table->string('imageable_type');
+
+
+"nombredelmodelo(able)_id" (minusculas)
 
 ### Vinculaciones
-.
+4. "Morfeamos" Image
+
+En "Slides\laravel\relationships\app\Models\Image.php" creamos la funcion publica:
+
+    public function imageable():MorphTo
+    {
+        return $this->morphTo();
+    }
+
+5. "Morfeamos" Post
+
+En "Slides\laravel\relationships\app\Models\Post.php" creamos la funcion publica:
+
+    public function image():MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+6. "Morfeamos" User
+
+En el "Slides\laravel\relationships\app\Models\User.php"
+
+    public function image():MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
 
 ### Repoblando la Base de datos
 .
 
 ### Gestionando la VIEW
-.
+. Actualizamos la vista:
+
+```html
+    <h1>{{ $user->image->url }}</h1>
+```
 
 ### Gestionando la API
-.
+. Actualizamos la API
+
+En el "Slides\laravel\relationships\app\Http\Resources\UserResource.php" actualizamos el UserResource:
+
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'phones' => $this->phones,
+            'roles' => $this->roles,
+            'image' => $this->image,
+        ];
+
