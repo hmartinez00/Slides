@@ -472,7 +472,7 @@ Si no respetara la convencion de laravel, habria que especificar tres parametros
 
 > (min 01:22:29)
 
-## POLIMORFICAS
+## MORPHONE
 ### Pasos preliminares
 1. Creamos otro modelo llamado post e image.
 
@@ -544,4 +544,30 @@ En el "Slides\laravel\relationships\app\Http\Resources\UserResource.php" actuali
             'roles' => $this->roles,
             'image' => $this->image,
         ];
+
+> (01:36:36)
+
+## MORPHMANY
+### Vinculaciones
+1. En "Slides\laravel\relationships\app\Models\Post.php" hacemos el cambio de "MorphOne" a "MorphMany":
+
+    public function image():MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+y en "Slides\laravel\relationships\app\Models\User.php" hacemos el cambio de "MorphOne" a "MorphMany":
+
+    public function image():MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+### Repoblando la Base de datos
+### Gestionando la VIEW
+### Gestionando la API
+
+> (min 01:40:15)
+
+## MORPHMANYTOMANY
 
