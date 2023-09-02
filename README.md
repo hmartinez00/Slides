@@ -570,4 +570,7 @@ y en "Slides\laravel\relationships\app\Models\User.php" hacemos el cambio de "Mo
 > (min 01:40:15)
 
 ## MORPHMANYTOMANY
-
+### Vinculaciones
+### Repoblando la Base de datos
+### Gestionando la VIEW
+### Gestionando la API
