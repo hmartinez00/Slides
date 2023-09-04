@@ -238,6 +238,9 @@ En "Slides\laravel\relationships\app\Models\User.php"
     {
         return $this->belongsToMany(Role::class);
     }
+
+o
+
     public function roles():BelongsToMany
     {
         return $this->belongsToMany(Role::class)->withPivot('added_by');
@@ -569,9 +572,62 @@ y en "Slides\laravel\relationships\app\Models\User.php" hacemos el cambio de "Mo
 
 > (min 01:40:15)
 
-## MORPHMANYTOMANY
+## MORPHTOMANY
 ### Pasos preliminares
+1. Creamos los nuevos modelos llamados "Video" y "Tag".
+
+2. Declaramos en:
+"Slides\laravel\relationships\app\Models\Video.php" y "Slides\laravel\relationships\app\Models\Tag.php"
+    protected $guarded = [];
+
+3. Establecemos la estructura en el archivo de migracion:
+"Slides\laravel\relationships\database\migrations\2023_09_04_141434_create_videos_table.php" y "Slides\laravel\relationships\database\migrations\2023_09_04_141832_create_tags_table.php".
+
+### Creando tabla de Paso para vinculaciones
+> Aca se emplea no una llave foranea sino una tabla de paso entro dos modelos para lograr las vinculaciones. Aca hay que tener cuidado, esta convencion de nombre no fue aclarada en el video, es nueva y no se parece a nada de lo tratado anteriormente.
+
+4. Ceamos el archivo de migracion (No lleva modelo asociado!!) con php artisan make:migration create_taggables_table
+
+5. En "Slides\laravel\relationships\database\migrations\2023_09_04_142747_create_taggables_table.php" modificar el Schema:
+
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('taggable_id');
+            $table->unsignedBigInteger('taggable_type');
+            $table->timestamps();
+        });
+
+6. Migramos.
+
 ### Vinculaciones
+7. Morfeamos "Post" y "Video"
+
+En "Slides\laravel\relationships\app\Models\Post.php"
+
+    public function tags():MorphToMany
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+y en "Slides\laravel\relationships\app\Models\Video.php"
+
+    public function tags():MorphToMany
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+finalmente en "Slides\laravel\relationships\app\Models\Tag.php"
+
+    public function posts():MorphToMany
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
+    public function videos():MorphToMany
+    {
+        return $this->morphedByMany(Video::class, 'taggable');    
+    }
+
 ### Repoblando la Base de datos
 ### Gestionando la VIEW
 ### Gestionando la API
