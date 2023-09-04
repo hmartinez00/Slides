@@ -628,6 +628,11 @@ finalmente en "Slides\laravel\relationships\app\Models\Tag.php"
         return $this->morphedByMany(Video::class, 'taggable');    
     }
 
+> Aca culmina el proceso de MorphToMany
+
 ### Repoblando la Base de datos
 ### Gestionando la VIEW
 ### Gestionando la API
+
+
+> Hasta aca el contenido de relaciones entre modelos en Laravel.
