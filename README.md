@@ -733,3 +733,110 @@ Route::middleware(['middleware-1', 'middleware-2'..., 'middleware-N'])->group(fu
     }
 
 > Esto puede generar peticion circular y tumba la pagina!
+
+
+## Desarrollando un sistema de autenticacion.
+> Nos apoyaremos en el modelo User que viene por defecto!!
+
+1. Crearemos un controlador basico llamado AuthController.
+
+2. Creamos la CustomRequest para la creacion de usuarios con: php artisan make:request CreateUserRequest.
+
+3. Creamos la CustomRequest para la autenticacion de usuarios con: php artisan make:request LoginUserRequest.
+
+4. En "Slides\laravel\middlewareauth\app\Http\Requests\CreateUserRequest.php" actualizamos:
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ];
+    }
+
+5. En "Slides\laravel\middlewareauth\app\Http\Requests\LoginUserRequest.php" actualizamos:
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+    }
+
+6. En "Slides\laravel\middlewareauth\app\Http\Controllers\AuthController.php" agregamos las funciones: 
+
+    public function createUser(CreateUserRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User created succesfully',
+            'token' => $user->createToken('API TOKEN')->plainTextToken
+        ], 200);
+    }
+
+    public function loginUser(LoginUserRequest $request)
+    {
+        if(!Auth::attempt($request->only(['email', 'password'])))
+        {
+            return response()->json([
+                'status' => false,
+                'message' => 'Email & Password do not match with our records',
+            ], 401);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User logged in successfully',
+            'token' => $user->createToken("API TOKEN")->plainTextToken
+        ], 200);
+    }
+
+7. En "Slides\laravel\middlewareauth\routes\api.php" creamos nuestras rutas:
+
+    Route::post('/create', [AuthController::class, 'createUser']);
+    Route::post('/login', [AuthController::class, 'loginUser']);
+
+8. Podemos enviar la peticion a la API
+
+POST http://127.0.0.1:8000/api/create
+
+Body:
+{
+  "name": "hmartinez",
+  "email": "hmartinez@email.com",
+  "password": "XXXXXX"
+}
+
+Luego de esta configuracion damos Send.
+
+Ahora para entrar a a la ruta api/user:
+
+GET http://127.0.0.1:8000/api/user
+
+Headers:
+Accept          : application/json
+User-Agent      : Thunder Client (https://www.thunderclient.com)
+Authorization   : Bearer 1|Rb4KBKVcQyg9kO54tOhLKZprFFEUpQrMLxJ3CHn47d31376a
+Content-Type    : application/json
+
+Luego de esta configuracion damos Send.
