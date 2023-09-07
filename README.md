@@ -638,9 +638,9 @@ finalmente en "Slides\laravel\relationships\app\Models\Tag.php"
 > Hasta aca el contenido de relaciones entre modelos en Laravel.
 
 
-
 # MIDDLEWARE Y API AUTH
 
+## Aplicando directamente a rutas.
 1. Creamos nuestro primer middleware con: php artisan make:middleware Example
 
 2. En "Slides\laravel\middlewareauth\app\Http\Kernel.php" agregamos a la lista "protected $middlewareAliases" el elemento:
@@ -699,3 +699,37 @@ Alli podremos acceder directamente a la ruta: http://127.0.0.1:8000/api/
 
 Recibiendo la respuesta predeterminada en el paso 4 'Hellow World!'
 
+
+## Aplicando a grupos de rutas.
+1. Podemos usar la funcion group(). En "Slides\laravel\middlewareauth\routes\api.php" reintroducimos la primera ruta quitando el middleware. queda asi:
+
+Route::middleware('example')->group(function () {
+    Route::get('/', [ExampleController::class, 'index']);
+});
+
+2. Si se aplican varios middleware a dicho grupo de rutas se usa un array, y en caso de excluir la accion de un middleware sobre una ruta concreta del grupo se usa el metodo "->withoutMiddleware('...')". En abstracto seria como sigue:
+
+Route::middleware(['middleware-1', 'middleware-2'..., 'middleware-N'])->group(function () {
+    Route::get('/ruta-1', [Controller::class, 'function']);
+    Route::get('/ruta-2', [Controller::class, 'function']);
+    Route::get('/ruta-3', [Controller::class, 'function'])->withoutMiddleware('middleware-2');
+    Route::get('/ruta-4', [Controller::class, 'function']);
+    ...
+    Route::get('/ruta-M', [Controller::class, 'function']);
+});
+
+
+## Usando el método contructor en el Controller.
+1. Agregamos al principio del archivo controlador:
+
+...
+    class ExampleController extends Controller
+    {
+        public function __construct()
+        {
+            $this->middleware('example');
+        }
+        ...
+    }
+
+> Esto puede generar peticion circular y tumba la pagina!
