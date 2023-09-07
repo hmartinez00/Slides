@@ -49,6 +49,8 @@ class laravel_orders():
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
             'resource'  : 'php artisan make:resource', 
              # Crea una nueva clase de recurso en la carpeta "app/Http/Resources".
+            'request'  : 'php artisan make:request', 
+             # Crea una nueva clase de recurso en la carpeta "app/Http/Requests".
             'middleware'  : 'php artisan make:middleware', 
              # Crea un nuevo middleware".
             'route'  : 'php artisan route:list', 
@@ -268,6 +270,13 @@ class laravel_orders():
         factory_name = option_list(self.model_list()) + 'Factory'
         self.action('factory', factory_name)    
 
+    def makecontroller(self):
+        '''
+        main_description: makecontroller.
+        '''
+        controller_name = input('controller name: ').capitalize()
+        self.action('controller', controller_name  + 'Controller')
+
     def makecontroller_model(self):
         '''
         main_description: makecontroller_model.
@@ -302,6 +311,13 @@ class laravel_orders():
         '''
         middleware_name = input('middleware name: ').capitalize()
         self.action('middleware', middleware_name)
+
+    def makerequest(self):
+        '''
+        main_description: makerequest.
+        '''
+        request_name = input('request name: ')
+        self.action('request', request_name)
 
     def routelist(self):
         '''
