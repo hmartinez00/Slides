@@ -636,3 +636,66 @@ finalmente en "Slides\laravel\relationships\app\Models\Tag.php"
 
 
 > Hasta aca el contenido de relaciones entre modelos en Laravel.
+
+
+
+# MIDDLEWARE Y API AUTH
+
+1. Creamos nuestro primer middleware con: php artisan make:middleware Example
+
+2. En "Slides\laravel\middlewareauth\app\Http\Kernel.php" agregamos a la lista "protected $middlewareAliases" el elemento:
+
+    'example' => \App\Http\Middleware\Example::class,
+
+3. Creamos el controlador del middleware. Sera el siguiente: "Slides\laravel\middlewareauth\app\Http\Controllers\ExampleController.php"
+
+4. Actualizamos el controlador:
+
+    public function index()
+    {
+        return response()->json('Hellow World!', 200); #Recuerda que esto protege una ruta api!
+    }
+
+5. En "Slides\laravel\middlewareauth\routes\api.php" agregamos:
+
+Route::middleware('example')->get('/', [ExampleController::class, 'index']);
+
+El middleware de proteccion se llama "middleware('example')" debido a que asi fue registrado en "Kernel.php" (Paso: 2).
+
+Adicionalmente agregaremos una ruta no protegida para comparar:
+
+Route::get('/no-access', [ExampleController::class, 'noAccess'])->name('no-access');
+
+6. Agregamos al controlador otra funcion publica:
+
+    public function noAccess()
+    {
+        return response()->json('No access', 200);
+    }
+
+7. En "Slides\laravel\middlewareauth\app\Http\Middleware\Example.php" actualizamos:
+
+    public function handle(Request $request, Closure $next): Response
+    {
+        return redirect()->route('no-access');
+        // return $next($request);
+    }
+
+8. Migramos.
+
+9. Levantamos el servicio y podemos acceder a la ruta: http://127.0.0.1:8000/api/, pero con la estructura actual, seremos redireccionados inmediatamente a: http://127.0.0.1:8000/api/no-access
+
+Recibiendo la respuesta predeterminada en el paso 6 'No access'.
+
+Si cambiamos en  "Slides\laravel\middlewareauth\app\Http\Middleware\Example.php" actualizamos:
+
+    public function handle(Request $request, Closure $next): Response
+    {
+        // return redirect()->route('no-access');
+        return $next($request);
+    }
+
+Alli podremos acceder directamente a la ruta: http://127.0.0.1:8000/api/
+
+Recibiendo la respuesta predeterminada en el paso 4 'Hellow World!'
+

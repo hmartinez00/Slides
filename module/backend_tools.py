@@ -49,6 +49,8 @@ class laravel_orders():
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
             'resource'  : 'php artisan make:resource', 
              # Crea una nueva clase de recurso en la carpeta "app/Http/Resources".
+            'middleware'  : 'php artisan make:middleware', 
+             # Crea un nuevo middleware".
             'route'  : 'php artisan route:list', 
              # Muestra la lista actualizada de rutas del sistema".
         }
@@ -168,7 +170,7 @@ class laravel_orders():
 
     def model_list(self):
         '''
-        main_description: model list.
+        main_description: model_list.
         '''
         directorio = os.path.join(self.project_path, 'app', 'Models')
 
@@ -197,6 +199,38 @@ class laravel_orders():
         # print(modelos)
 
         return modelos
+
+    def middleware_list(self):
+        '''
+        main_description: middleware_list.
+        '''
+        directorio = os.path.join(self.project_path, 'app', 'http' , 'middleware')
+
+        # Verificar si el directorio existe
+        if not os.path.isdir(directorio):
+            print("El directorio no existe.")
+            return []
+        
+        # Obtener todos los archivos del directorio
+        archivos = os.listdir(directorio)
+        
+        # Lista para almacenar los nombres de los middlewares
+        middlewares = []
+        
+        # Recorrer cada archivo del directorio
+        for archivo in archivos:
+            # Verificar si el archivo es un middleware (termina con ".php" y no es "middleware.php")
+            if archivo.endswith(".php") and archivo != "middleware.php":
+                # Agregar el nombre del middleware a la lista
+                middlewares.append(archivo[:-4])
+        
+        # Verificar si se encontraron middlewares
+        if len(middlewares) == 0:
+            print("No se encontraron middlewares en el directorio.")
+        
+        # print(middlewares)
+
+        return middlewares
 
 
     def serve(self):
@@ -234,11 +268,18 @@ class laravel_orders():
         factory_name = option_list(self.model_list()) + 'Factory'
         self.action('factory', factory_name)    
 
-    def makecontroller(self):
+    def makecontroller_model(self):
         '''
-        main_description: makecontroller.
+        main_description: makecontroller_model.
         '''
         controller_name = option_list(self.model_list()) + 'Controller'
+        self.action('controller', controller_name)
+
+    def makecontroller_middleware(self):
+        '''
+        main_description: makecontroller_middleware.
+        '''
+        controller_name = option_list(self.middleware_list()) + 'Controller'
         self.action('controller', controller_name)
 
     def makeresource(self):
@@ -250,10 +291,17 @@ class laravel_orders():
 
     def makecontroller_resource(self):
         '''
-        main_description: makecontroller resource.
+        main_description: makecontroller_resource.
         '''
         controller_name = option_list(self.model_list()) + 'Controller'
         self.action('controller', controller_name + ' --resource')
+
+    def makemiddleware(self):
+        '''
+        main_description: makemiddleware.
+        '''
+        middleware_name = input('middleware name: ').capitalize()
+        self.action('middleware', middleware_name)
 
     def routelist(self):
         '''
