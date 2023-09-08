@@ -66,6 +66,7 @@ class laravel_orders():
             'npm_install': 'npm install',
              # Instalará npm para vizualizacion del scafolding.
             'npm_run_dev': 'npm run dev',
+             # Iniciara node para la adecuada ejecuacion de los frontales.
         }
 
         self.conn_project()
