@@ -49,12 +49,16 @@ class laravel_orders():
              # Crea un nuevo controlador en la carpeta "app/Http/Controllers".
             'resource'  : 'php artisan make:resource', 
              # Crea una nueva clase de recurso en la carpeta "app/Http/Resources".
-            'request'  : 'php artisan make:request', 
-             # Crea una nueva clase de recurso en la carpeta "app/Http/Requests".
-            'middleware'  : 'php artisan make:middleware', 
+            'request'   : 'php artisan make:request', 
+             # Crea una nueva clase de request en la carpeta "app/Http/Requests".
+            'middleware': 'php artisan make:middleware', 
              # Crea un nuevo middleware".
-            'route'  : 'php artisan route:list', 
+            'route'     : 'php artisan route:list', 
              # Muestra la lista actualizada de rutas del sistema".
+            'Auth_breeze_package': 'composer require laravel/breeze --dev',
+             # Instalará el paquete breeze para gestionar autenticaciones.
+            'breeze_install': 'php artisan breeze:install',
+             # Instalará el scafolding.
         }
 
         self.conn_project()
@@ -354,6 +358,18 @@ class laravel_orders():
         main_description: dbseed.
         '''
         self.action('seed')
+
+    def Auth_breeze_package(self):
+        '''
+        main_description: Auth_breeze_package.
+        '''
+        self.action('Auth_breeze_package')
+
+    def breeze_install(self):
+        '''
+        main_description: breeze_install.
+        '''
+        self.action('breeze_install')
 
     def newview(self):
         '''
