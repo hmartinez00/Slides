@@ -61,7 +61,7 @@ class laravel_orders():
              # Instalará el paquete jetstream para gestionar autenticaciones.
             'breeze_install'        : 'php artisan breeze:install',
              # Instalará el scafolding.
-            'jetstream_install'        : 'php artisan jetstream:install',
+            'jetstream_install'     : 'php artisan jetstream:install',
              # Instalará el scafolding.
             'npm_install': 'npm install',
              # Instalará npm para vizualizacion del scafolding.
