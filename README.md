@@ -842,7 +842,6 @@ Content-Type    : application/json
 Luego de esta configuracion damos Send.
 
 
-
 # AUTH, BREEZE JETSTREAM
 
 ## BREEZE
