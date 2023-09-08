@@ -59,6 +59,9 @@ class laravel_orders():
              # Instalará el paquete breeze para gestionar autenticaciones.
             'breeze_install': 'php artisan breeze:install',
              # Instalará el scafolding.
+            'npm_install': 'npm install',
+             # Instalará npm para vizualizacion del scafolding.
+            'npm_run_dev': 'npm run dev',
         }
 
         self.conn_project()
@@ -370,6 +373,18 @@ class laravel_orders():
         main_description: breeze_install.
         '''
         self.action('breeze_install')
+
+    def npm_install(self):
+        '''
+        main_description: npm_install.
+        '''
+        self.action('npm_install')
+
+    def npm_run_dev(self):
+        '''
+        main_description: npm_run_dev.
+        '''
+        self.action('npm_run_dev')
 
     def newview(self):
         '''

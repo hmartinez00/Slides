@@ -840,3 +840,84 @@ Authorization   : Bearer 1|Rb4KBKVcQyg9kO54tOhLKZprFFEUpQrMLxJ3CHn47d31376a
 Content-Type    : application/json
 
 Luego de esta configuracion damos Send.
+
+
+
+# AUTH, BREEZE JETSTREAM
+
+## BREEZE
+1. Descargar Breeze con: 
+composer require laravel/breeze --dev
+
+2. Instalar scafolding con:
+php artisan breeze:install
+
+> Solicitara configuracion. Introducir:
+> stack: blade
+> dark mode support: yes
+> testing framework: [Enter]
+>
+> Aca iniciara la instalacion.
+
+Se actualizaran los directorios y archivos:
+* "\resources\views"
+* "\routes\web.php"
+* "\app\Http\Controllers\Auth"
+* "\app\Http\Controllers\ProfileController.php".
+
+3. Antes de apreciar los resultados de la estructura creada, Migramos.
+
+4. Ejecutar: npm install
+
+5. Ejecutar: npm run dev 
+Dejar activo el terminal!
+
+6. Ahora si, para poder ver los resultados, levantar el servidor local.
+
+
+> Hagamos un ejemplo de adicion de ruta:
+
+7. Creamos ExampleController.
+
+8. En "Slides\laravel\authbreeze\routes\web.php" agregamos:
+
+Route::middleware('auth')->group(function () {
+    ...
+    Route::get('/example', [ExampleController::class, 'index'])->name('example');
+});
+
+9. En "Slides\laravel\authbreeze\app\Http\Controllers\ExampleController.php" actualizamos:
+
+    public function index()
+    {
+        $user = Auth::user();
+        return view('example', compact('user'));
+    }
+
+10. Podemos crear una nueva vista en 
+"Slides\laravel\authbreeze\resources\views\example.blade.php" con el siguiente contenido
+
+```html
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            Example Page
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <p>Hellow {{ $user->name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+```
+
+> Hasta aca lo correspondiente a Breeze (min 00:47:14)
+
+## JETSTREAM
+
