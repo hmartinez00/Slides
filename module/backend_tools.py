@@ -52,12 +52,16 @@ class laravel_orders():
             'request'   : 'php artisan make:request', 
              # Crea una nueva clase de request en la carpeta "app/Http/Requests".
             'middleware': 'php artisan make:middleware', 
-             # Crea un nuevo middleware".
+             # Crea un nuevo middleware.
             'route'     : 'php artisan route:list', 
              # Muestra la lista actualizada de rutas del sistema".
-            'Auth_breeze_package': 'composer require laravel/breeze --dev',
+            'Auth_breeze_package'   : 'composer require laravel/breeze --dev',
              # Instalará el paquete breeze para gestionar autenticaciones.
-            'breeze_install': 'php artisan breeze:install',
+            'Auth_jetstream_package': 'composer require laravel/jetstream',
+             # Instalará el paquete jetstream para gestionar autenticaciones.
+            'breeze_install'        : 'php artisan breeze:install',
+             # Instalará el scafolding.
+            'jetstream_install'        : 'php artisan jetstream:install',
              # Instalará el scafolding.
             'npm_install': 'npm install',
              # Instalará npm para vizualizacion del scafolding.
@@ -368,11 +372,25 @@ class laravel_orders():
         '''
         self.action('Auth_breeze_package')
 
+    def Auth_jetstream_package(self):
+        '''
+        main_description: Auth_jetstream_package.
+        '''
+        self.action('Auth_jetstream_package')
+
     def breeze_install(self):
         '''
         main_description: breeze_install.
         '''
         self.action('breeze_install')
+
+    def jetstream_install(self):
+        '''
+        main_description: jetstream_install.
+        '''
+        opt = ['livewire', 'inertia', 'inertia --teams']
+        stack = option_list(opt)
+        self.action('jetstream_install', stack)
 
     def npm_install(self):
         '''

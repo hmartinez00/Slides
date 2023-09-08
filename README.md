@@ -918,5 +918,26 @@ Route::middleware('auth')->group(function () {
 
 > Hasta aca lo correspondiente a Breeze (min 00:47:14)
 
+
 ## JETSTREAM
+
+1. Descargar jetstream con: 
+composer require laravel/jetstream
+
+2. Instalar scafolding con:
+php artisan jetstream:install livewire
+
+Se actualizaran los directorios y archivos:
+* "\resources\config"
+* "\resources\views"
+* "\routes\web.php"
+
+3. Ejecutar: npm install
+
+4. Ejecutar: npm run dev 
+Dejar activo el terminal!
+
+5. Migramos.
+
+6. Aca ya se puede levantar el servidor local.
 
