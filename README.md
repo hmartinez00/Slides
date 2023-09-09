@@ -941,3 +941,253 @@ Dejar activo el terminal!
 
 6. Aca ya se puede levantar el servidor local.
 
+
+# LIVEWIRE (Renderizado parcial)
+
+1. Instalamos directamente livewire. Para esto usamos el comando:
+composer require livewire/livewire
+
+2. En "Slides\laravel\livewireexample\resources\views" creamos un directorio de "layouts" y una plantilla "app"
+
+3. En "Slides\laravel\livewireexample\resources\views\layouts\app.blade.php" actualizamos:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
+    @livewireStyles
+</head>
+<body>
+    @yield('content')
+    @livewireScripts
+</body>
+</html>
+```
+
+4. En "Slides\laravel\livewireexample\resources\views\welcome.blade.php" borramos el contenido y lo reemplazamos:
+
+```html
+@extends('layouts.app')
+@section('title', 'Livewire Example')
+@section('content')
+    <h1>Hellow World!</h1>
+@endsection
+```
+
+> Podemos lanzar el servicio para ver los cambios!
+
+## Generando componentes!
+
+1. Crearemos un nuevo componente livewire con la orden:
+php artisan make:livewire [name]
+
+En este caso name = "counter".
+
+> Se creara los siguientes nuevos directorios:
+* Slides\laravel\livewireexample\app\Livewire
+* Slides\laravel\livewireexample\resources\views\livewire
+
+2. En "Slides\laravel\livewireexample\resources\views\livewire\counter.blade.php" actualizamos:
+
+```html
+<div>
+    <h1>Hellow From Counter!</h1>
+</div>
+```
+
+3. En "Slides\laravel\livewireexample\resources\views\welcome.blade.php" actualizamos:
+
+```php
+@extends('layouts.app')
+@section('title', 'Livewire Example')
+@section('content')
+    <livewire:counter />
+@endsection
+```
+
+> Levantamos el servicio.
+
+
+## Dando funcionalidad al componente (min 00:47:04)
+
+1. Modificamos el "Slides\laravel\livewireexample\app\Livewire\Counter.php":
+
+```php
+...
+class Counter extends Component
+{
+    public $count = 0; #Notese el uso de la variable publica accesible en todo el resto del documento.
+
+    public function increment()
+    {
+        $this->count++;
+    }
+    ...
+}
+```
+
+2. Modificamos el componente: "Slides\laravel\livewireexample\resources\views\livewire\counter.blade.php":
+
+```php
+<div>
+    <h1>{{ $count }}</h1>
+    <button wire:click="increment">Increment</button>
+</div>
+```
+
+> Aca ya podemos apreciar la accion del componente reactivo (min 00:54:58).
+
+
+## Hooke (gancho) al ciclo de vida
+
+1. Veamos un ejemplo. Modificamos el "Slides\laravel\livewireexample\app\Livewire\Counter.php" agregando otra funcion publica antes de todo el contenido de funciones previamente establecidas:
+
+```php
+...
+class Counter extends Component
+{
+    public $count = 0; #Notese el uso de la variable publica accesible en todo el resto del documento.
+
+    public function mount()
+    {
+        $this->fill(['count' => 20]);
+    }
+    ...
+}
+```
+
+## Bindeo bidireccional
+
+1. Modificamos el "Slides\laravel\livewireexample\app\Livewire\Counter.php" agregando:
+
+```php
+...
+class Counter extends Component
+{
+    ...
+    public $username = "";
+    ...
+}
+```
+
+2. Modificamos el componente: "Slides\laravel\livewireexample\resources\views\livewire\counter.blade.php":
+
+```php
+<div>
+    <h1>{{ $count }}</h1>
+    <button wire:click="increment">Increment</button>
+
+    <input type="text" wire:model="username">
+    <br>
+    <h3>{{ $username }}</h3>
+</div>
+```
+
+### Hagamos un Ejemplo explicito (min 01:07:58)
+
+1. Creamos el modelo note.
+
+    1.1 Aplicamos protected $guarded = []; a Note.php
+    1.2 Creamos la estructura de la tabla.
+
+```php
+        Schema::create('notes', function (Blueprint $table) {
+            $table->id();
+            $table->string('content')->nullable();
+            $table->timestamps();
+        });
+```
+
+2. Migramos.
+
+3. Crearemos un nuevo componente livewire llamado "example".
+
+> Se creara los siguientes nuevos archivos:
+* livewireexample\app\Livewire\Example.php
+* livewireexample\resources\views\livewire\example.blade.php
+
+4. Desarrollamos la funcionalidad en
+
+    4.1 "Slides\laravel\livewireexample\app\Livewire\Example.php"
+
+```php
+...
+
+namespace App\Livewire;
+
+use App\Models\Note;
+use Livewire\Component;
+
+class Example extends Component
+{
+    public $note = "";
+    public $feedback = "";
+
+    public function update($id)
+    {
+        $notetoupdate = Note::find($id);
+        $notetoupdate->content = $this->feedback;
+        $notetoupdate->save();
+        $this->feedback = 'Note Update';
+    }    
+
+    public function store()
+    {
+        Note::create([
+            'content' => $this->note
+        ]);
+        $this->feedback = 'Note created';
+    }
+
+    public function destroy($id)
+    {
+        Note::destroy($id);
+        $this->feedback = 'Note deleted';
+    }
+
+    public function render()
+    {
+        $notes = Note::all();
+        return view('livewire.example', compact('notes'));
+    }
+}
+```
+
+    4.2 "Slides\laravel\livewireexample\resources\views\livewire\example.blade.php"
+
+```php
+<div>
+    <input type="text" wire:model="note">
+    <button wire:click="store" >Save Notes</button>
+    <p style='color: red'>{{ $feedback }}</p>
+    <table>
+        <tbody>
+            @foreach ($notes as $note)
+                <tr>
+                    <td>{{ $note->content }}</td>
+                    <td>
+                        <button wire:click="update('{{ $note->id }}')">Update</button>
+                    </td>
+                    <td>
+                        <button wire:click="destroy('{{ $note->id }}')">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+```
+
+5. Alteramos el Welcome:
+
+```php
+@extends('layouts.app')
+@section('title', 'Livewire Example')
+@section('content')
+    {{-- <livewire:counter /> --}}
+    <livewire:example />
+@endsection
+```
