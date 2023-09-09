@@ -53,12 +53,16 @@ class laravel_orders():
              # Crea una nueva clase de request en la carpeta "app/Http/Requests".
             'middleware': 'php artisan make:middleware', 
              # Crea un nuevo middleware.
+            'livewire_component': 'php artisan make:livewire', 
+             # Crea un nuevo compnente livewire.
             'route'     : 'php artisan route:list', 
              # Muestra la lista actualizada de rutas del sistema".
             'Auth_breeze_package'   : 'composer require laravel/breeze --dev',
              # Instalará el paquete breeze para gestionar autenticaciones.
             'Auth_jetstream_package': 'composer require laravel/jetstream',
              # Instalará el paquete jetstream para gestionar autenticaciones.
+            'livewire'  : 'composer require livewire/livewire',
+             # Instalará el paquete livewire para renderizado parcial en el proyecto.
             'breeze_install'        : 'php artisan breeze:install',
              # Instalará el scafolding.
             'jetstream_install'     : 'php artisan jetstream:install',
@@ -331,6 +335,13 @@ class laravel_orders():
         request_name = input('request name: ')
         self.action('request', request_name)
 
+    def livewire_component(self):
+        '''
+        main_description: livewire_component.
+        '''
+        livewire_component_name = input('livewire component name: ')
+        self.action('livewire_component', livewire_component_name)
+
     def routelist(self):
         '''
         main_description: routelist.
@@ -404,6 +415,12 @@ class laravel_orders():
         main_description: npm_run_dev.
         '''
         self.action('npm_run_dev')
+
+    def livewire(self):
+        '''
+        main_description: livewire.
+        '''
+        self.action('livewire')
 
     def newview(self):
         '''
