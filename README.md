@@ -1328,7 +1328,7 @@ Route::get('/store', [InfoController::class, 'store'])->name('store');
 </html>
 ```
 
-8. Podemos levantar el servicio y probar (min 01:06:36)
+8. Podemos levantar el servicio y probar (min 01:06:36).
 
 9. Podemos visualizar la imagen propiamente si hacemos lo siguiente.
 
@@ -1338,7 +1338,7 @@ Cambiamos:
             <li>{{ $info->name }} {{ $info->file_uri }}</li>
 ```
 
-por
+Por:
 
 ```php
             <li><img src="{{ asset('images/'.$info->file_uri) }}" width="128"></li>
@@ -1346,6 +1346,37 @@ por
 
 (min 01:09:18)
 
+10. En vez de mover la imagen, podemos "guardar como" alterando el controlador como sigue:
 
+Cambiamos:
 
+```php
+        $request->file->move(public_path('images'), $fileName);
+```
+
+Por:
+
+```php
+        $request->file->storeAs('public/images', $fileName);
+```
+
+- La imagen se va a guardar ahora en "Slides\laravel\storageexample\storage\app\images\1696625098.png".
+
+- La imagen No se vera en el frontal!
+
+11. Para lograr que la imagen se vea despues del paso anterior, hay que crear un link simbolico con:
+
+php artisan storage:link
+
+12. En el index debes cambiar:
+
+```php
+            <li><img src="{{ asset('images/'.$info->file_uri) }}" width="128"></li>
+```
+
+Por:
+
+```php
+            <li><img src="{{ asset('storage/images/'.$info->file_uri) }}" width="128"></li>
+```
 
