@@ -1191,3 +1191,161 @@ class Example extends Component
     <livewire:example />
 @endsection
 ```
+
+
+# FILESTORAGE
+
+1. Creamos el modelo Info con su migracion. (min 27:09)
+
+2. Fijamos el schema:
+
+```php
+        Schema::create('infos', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('file_uri')->nullable();
+            $table->timestamps();
+        });
+```
+
+3. Prefijamos el protected $guarded = []; en el  modelo.
+
+4. Migramos.
+
+5. Creamos una Custome Request asociandola al modelo Info para liberar al futuro controlador de tener que hacer operaciones logicas.
+
+```php
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File as RulesFile;
+
+class InfoRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'name' => ['nullable', 'max:100'],
+            'file' => ['nullable', RulesFile::image()->max(10 * 1024)]
+        ];
+    }
+}
+
+```
+
+6. Creamos el controlador asociandolo al modelo Info! y creamos las funciones index, create y store.
+
+```php
+class InfoController extends Controller
+{
+    public function index()
+    {
+        $infos = Info::get();
+        return view('index', compact('infos'));
+    }
+
+    public function create()
+    {
+        return view('create');
+    }
+
+    public function store(InfoRequest $request)
+    {
+        $fileName = time().'.'.$request->file->extension();
+        $request->file->move(public_path('images'), $fileName);
+
+        $info = new Info;
+        $info->name = $request->name;
+        $info->file_uri = $fileName;
+        $info->save();
+
+        return redirect()->route('index');
+    }
+
+}
+```
+
+7. Hecho el controlador, generamos las rutas en "Slides\laravel\storageexample\routes\web.php" que haran uso de ese controlador.
+
+```php
+Route::get('/', [InfoController::class, 'index'])->name('index');
+Route::get('/create', [InfoController::class, 'create'])->name('create');
+Route::get('/store', [InfoController::class, 'store'])->name('store');
+```
+
+8. Creamos las vistas index y create.
+
+```php - index
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{{ route('create') }}">Create</a>
+    <ul>
+        @forelse ($infos as $info)
+            <li>{{ $info->name }} {{ $info->file_uri }}</li>
+        @empty
+            <li>No data.</li>
+        @endforelse
+    </ul>
+</body>
+</html>
+```
+
+```php - create
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{{ route('index') }}">Back to index</a>
+    <br>
+    <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="name" placeholder="Name">
+        <br>
+        <input type="file" name="file" placeholder="File">
+        <br>
+        <input type="submit" value="send">
+    </form>
+</body>
+</html>
+```
+
+8. Podemos levantar el servicio y probar (min 01:06:36)
+
+9. Podemos visualizar la imagen propiamente si hacemos lo siguiente.
+
+Cambiamos:
+
+```php
+            <li>{{ $info->name }} {{ $info->file_uri }}</li>
+```
+
+por
+
+```php
+            <li><img src="{{ asset('images/'.$info->file_uri) }}" width="128"></li>
+```
+
+(min 01:09:18)
+
+
+
+

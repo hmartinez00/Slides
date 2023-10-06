@@ -75,6 +75,8 @@ class laravel_orders():
              # Instalará npm para vizualizacion del scafolding.
             'npm_run_dev': 'npm run dev',
              # Iniciara node para la adecuada ejecuacion de los frontales.
+            'storagelink': 'php artisan storage:link',
+             # genera un link simbolico...
         }
 
         self.conn_project()
@@ -339,6 +341,13 @@ class laravel_orders():
         request_name = input('request name: ')
         self.action('request', request_name)
 
+    def makerequest_model(self):
+        '''
+        main_description: makerequest_model.
+        '''
+        request_name = option_list(self.model_list()) + 'Request'
+        self.action('request', request_name)
+
     def livewire_component(self):
         '''
         main_description: livewire_component.
@@ -425,6 +434,12 @@ class laravel_orders():
         main_description: livewire.
         '''
         self.action('livewire')
+
+    def storagelink(self):
+        '''
+        main_description: storagelink.
+        '''
+        self.action('storagelink')
 
     def newview(self):
         '''
