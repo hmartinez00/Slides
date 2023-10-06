@@ -5,12 +5,16 @@ from General_Utilities.control_rutas import setting_routes
 
 class laravel_orders():
     '''
-    Clase de compendio de ordenes para proyectos laravel
+    Clase de compendio de ordenes para proyectos laravel.
+
+    La creacion de proyectos requiere conexion a internet!
     '''
 
     def __init__(self):
         '''
         Inicializa la instancia.
+
+        Se abre un explorador de archivos. Hay que localizarlo en la carpeta de proyectos. 
         '''
         import tkinter as tk
         from tkinter import filedialog
