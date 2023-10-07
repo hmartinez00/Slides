@@ -1380,3 +1380,17 @@ Por:
             <li><img src="{{ asset('storage/images/'.$info->file_uri) }}" width="128"></li>
 ```
 
+13. Si se desea habilitar la opcion de descarga del archivo hay que alterar en el controlador el return de la siguiente manera:
+
+```php
+            return Storage::download('descarga.jpg', $info->file_uri);
+```
+
+El objeto Storage permite otros metodos como:
+
+```php
+            Storage::url( $info->file_uri );
+// Para comprobar las uri de los archivos en el storage.
+            Storage::temporaryUrl( 'my_image.jpg', now()->addMinutes(10) );
+// Para crear una uri temporal.
+
