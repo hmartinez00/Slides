@@ -1394,3 +1394,201 @@ El objeto Storage permite otros metodos como:
             Storage::temporaryUrl( 'my_image.jpg', now()->addMinutes(10) );
 // Para crear una uri temporal.
 
+
+# MAILABLE
+
+## Preparativos previos
+
+1. Creamos el controlador "Slides\laravel\mailexample\app\Http\Controllers\MailController.php"
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class MailController extends Controller
+{
+    public function index()
+    {
+        return view('index');
+    }
+
+    public function mailMe()
+    {
+        // TODO
+    }
+}
+
+```
+
+2. CReamos la ruta que va a usar al controlador "Slides\laravel\mailexample\routes\web.php":
+
+```php
+Route::get('/', [MailController::class, 'index'])->name('index');
+Route::get('/mailme', [MailController::class, 'mailMe'])->name('mailMe');
+```
+
+3. Creamos la vista "Slides\laravel\mailexample\resources\views\index.blade.php":
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+            background-color: rgb(2, 2, 187);
+            padding: 15px;
+            border-radius: 10px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: blue
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ route('mailMe') }}">Mail me</a>
+</body>
+</html>
+```
+
+Ahora podemos gestionar la actualizacion del controlador (min 14:19).
+
+## Configurando el controlador
+
+1. Crearemos una clase para controlar la generacion de mails a traves de
+
+```
+    php artisan make:mail {Example}Mail
+```
+
+Se crea el archivo: Slides\laravel\mailexample\app\Mail\ExampleMail.php
+
+2. Configuramos el controlador de mails:
+
+```php
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope as MailablesEnvelope;
+use Illuminate\Queue\SerializesModels;
+
+class ExampleMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     */
+
+    public function __construct(public $name){}
+
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): MailablesEnvelope
+    {
+        return new MailablesEnvelope(
+            subject: 'This is an Example Mail',
+            // from: new Address('hectoralonzomartinez00@gmail.com', 'Hector Martinez'),
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.example',
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
+    }
+}
+```
+
+(min 39:28)
+
+## Configuramos la plantila del mail
+
+1. Creamos el archivo: "Slides\laravel\mailexample\resources\views\emails\example.blade.php".
+
+2. Actualizamos:
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hola {{ $name }}</h1>
+    <p>This is an example.</p>
+</body>
+</html>
+```
+
+3. Debemos migrar!!
+
+(min 15:17)
+
+## Configuramos los datos para la emision.
+
+1. Culminamos la funcion mailme en MailController:
+
+```php
+    public function mailMe()
+    {
+        Mail::to('hectoralonzomartinez00@gmail.com')->send(new ExampleMail('Hector Martinez'));
+    }
+```
+
+(min 54:50)
+
+2. En el archivo env podemos cambiar las credenciales:
+
+```env
+MAIL_MAILER=smtp 
+MAIL_HOST=smtp.gmail.com 
+MAIL_PORT=465 
+MAIL_USERNAME=hectoralonzomartinez00@gmail.com 
+MAIL_PASSWORD=kqrygjnwoyylzgwf
+MAIL_ENCRYPTION=ssl 
+MAIL_FROM_ADDRESS=hectoralonzomartinez00@gmail.com 
+MAIL_FROM_NAME="Example"
+```
+
+(min 01:07:11)

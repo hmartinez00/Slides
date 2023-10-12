@@ -59,6 +59,8 @@ class laravel_orders():
              # Crea un nuevo middleware.
             'livewire_component': 'php artisan make:livewire', 
              # Crea un nuevo compnente livewire.
+            'mail' : 'php artisan make:mail',
+            # Crea una clase para la generacion de mail.
             'route'     : 'php artisan route:list', 
              # Muestra la lista actualizada de rutas del sistema".
             'Auth_breeze_package'   : 'composer require laravel/breeze --dev',
@@ -354,6 +356,13 @@ class laravel_orders():
         '''
         livewire_component_name = input('livewire component name: ')
         self.action('livewire_component', livewire_component_name)
+
+    def mail(self):
+        '''
+        main_description: mail.
+        '''
+        mail_name = input('mail class name: ').capitalize()
+        self.action('mail', mail_name + 'Mail')
 
     def routelist(self):
         '''
