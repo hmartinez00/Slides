@@ -1,3 +1,186 @@
+# CRUD
+
+1. Creamos el modelo con archivo de migracion.
+2. Configuramos los campos del modelo.
+
+```php
+    public function up(): void
+    {
+        Schema::create('notes', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->timestamps();
+        });
+    }
+```
+
+3. Cumplimentamos campos en el archivo del modelo con:
+
+```php
+    protected $guarded = [];
+```
+
+4. Migramos.
+
+5. Creamos el controlador del modelo con opcion "resource".
+6. Configuramos el Controlador con las funciones CRUD!
+
+```php
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $notes = Note::all();
+        return view('note.index', compact('notes'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('note.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        Note::create($request->all());
+        return redirect()->route('note.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Note $note)
+    {
+        return view('note.show', compact('note'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Note $note)
+    {
+        return view('note.edit', compact('note'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Note $note)
+    {
+        $note->update($request->all());
+        return redirect()->route('note.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Note $note)
+    {
+        $note->delete();
+        return redirect()->route('note.index');
+    }
+```
+
+7. Configuramos las rutas.
+
+```php
+use App\Http\Controllers\NoteController;
+
+Route::resource('/note', NoteController::class);
+```
+
+8. Creamos las vistas.
+
+    8.1 Creamos Layouts/app.blade.php
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @yield('content')
+</body>
+</html>
+```
+
+    8.2 Extendemos a note/index.blade.php
+```php
+@extends('layouts.app')
+@section('content')
+<a href="{{ route('note.create') }}">Create new note</a>
+    <ul>
+        @forelse ($notes as $note)
+            <li>
+                <a href="#">{{ $note->title }}</a>
+                <a href="{{ route('note.edit', ['note' => $note->id]) }}">EDIT</a>
+                <a href="#">DELETE</a>
+            </li>
+        @empty
+            <p>No data.</p>
+        @endforelse
+    </ul>
+@endsection
+```
+
+    8.3 Extendemos a note/create.blade.php
+```php
+@extends('layouts.app')
+@section('content')
+<a href="{{ route('note.index') }}">Back</a>
+    <form method="POST" action="{{ route('note.store') }}">
+        @csrf
+        <label>Title:</label>
+        <input type="text" name="title">
+        <label>Description:</label>
+        <input type="text" name="description">
+
+        <input type="submit" value='Create'>
+    </form>
+@endsection
+```
+
+    8.4 Extendemos a note/edit.blade.php
+```php
+@extends('layouts.app')
+@section('content')
+<a href="{{ route('note.index') }}">Back</a>
+    <form method="POST" action="{{ route('note.update', ['note' => $note->id]) }}">
+        @method('PUT')
+        @csrf
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ $note->title }}">
+        <label>Description:</label>
+        <input type="text" name="description" value="{{ $note->description }}">
+
+        <input type="submit" value='Update'>
+    </form>
+@endsection
+```
+
+    8.5 Extendemos a note/show.blade.php
+```php
+@extends('layouts.app')
+@section('content')
+<a href="{{ route('note.index') }}">Back</a>
+    <h1>{{ $note->title }}</h1>
+    <p>{{ $note->description }}</p>
+@endsection
+```
+
+
+
+
 # RELATIONSHIPS
 
 ## ONE TO ONE
